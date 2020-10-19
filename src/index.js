@@ -1,46 +1,55 @@
-const { app, BrowserWindow } = require('electron');
+const { app } = require('electron');
 const path = require('path');
+const window = require('./helper/window');
+
+/* --- Squirrel --- */
 
 // Handle creating/removing shortcuts on Windows when installing/uninstalling.
-if (require('electron-squirrel-startup')) { // eslint-disable-line global-require
+if (require('electron-squirrel-startup')) {
   app.quit();
 }
 
-const createWindow = () => {
-  // Create the browser window.
-  const mainWindow = new BrowserWindow({
-    width: 800,
-    height: 600,
-  });
+/* --- Initialisation --- */
 
-  // and load the index.html of the app.
-  mainWindow.loadFile(path.join(__dirname, 'index.html'));
+app.allowRendererProcessReuse = true;
+
+/* --- Functions --- */
+
+function main() {
+  const mainWindow = window.new(path.join(__dirname, 'view/page/menu/index.html'));
 
   // Open the DevTools.
-  mainWindow.webContents.openDevTools();
-};
+  //mainWindow.webContents.openDevTools();
+}
 
-// This method will be called when Electron has finished
-// initialization and is ready to create browser windows.
-// Some APIs can only be used after this event occurs.
-app.on('ready', createWindow);
+function loadMainProcessFiles() {
+  const mainProcessFiles = file.list(path.join(__dirname, 'main/'));
+  mainProcessFiles.forEach(f => {
+    const filepath = path.join(__dirname, 'main/', f)
+    if (file.isFile(filepath)) {
+      require(filepath);
+    }
+  });
+}
 
-// Quit when all windows are closed, except on macOS. There, it's common
-// for applications and their menu bar to stay active until the user quits
-// explicitly with Cmd + Q.
+/* --- Electron app actions --- */
+
+// Application ready
+app.on('ready', main);
+// All window closed
 app.on('window-all-closed', () => {
   if (process.platform !== 'darwin') {
     app.quit();
   }
 });
-
+// Re-open
 app.on('activate', () => {
-  // On OS X it's common to re-create a window in the app when the
-  // dock icon is clicked and there are no other windows open.
   if (BrowserWindow.getAllWindows().length === 0) {
     createWindow();
   }
 });
+// Application stop
+app.on('quit', () => {
+ // TODO
+});
 
-// In this file you can include the rest of your app's specific main process
-// code. You can also put them in separate files and import them here.
