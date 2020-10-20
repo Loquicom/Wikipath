@@ -1,4 +1,4 @@
-const { app } = require('electron');
+const { app, BrowserView } = require('electron');
 const path = require('path');
 const window = require('./helper/window');
 
@@ -17,6 +17,27 @@ app.allowRendererProcessReuse = true;
 
 function main() {
   const mainWindow = window.new(path.join(__dirname, 'view/page/menu/index.html'));
+
+  /*
+  Gestion de base des fenetres Wikipedia
+
+  const view = new BrowserView()
+  mainWindow.setBrowserView(view)
+  view.setBounds({ x: 0, y: 0, width: 800, height: 500 })
+  view.webContents.on("dom-ready", (event) => {
+    // Quand la page est prete (apres toutes les redirections)
+    console.log(event.sender.history);
+  });
+  view.webContents.on('before-input-event', (event, input) => {
+    // Empeche de taper au clavier
+    event.preventDefault();
+  });
+  view.webContents.on('will-navigate', (event, url) => {
+    // Empeche la navigation par lien
+    event.preventDefault();
+  });
+  view.webContents.loadURL('https://fr.wikipedia.org/wiki/Sp%C3%A9cial:Page_au_hasard')
+  */
 
   // Open the DevTools.
   //mainWindow.webContents.openDevTools();
