@@ -1,6 +1,10 @@
 // Imports
 const $ = require('jquery');
-const router = require ('../../service/router');
+const routerService = require ('../../service/router');
+const dialogService = require ('../../service/dialog');
+
+// Variable
+let dialog = null;
 
 // Functions
 function host() {
@@ -11,12 +15,12 @@ function join() {
     const pseudo = $('#pseudo').val();
     // Check if pseudo is not empty
     if (!pseudo.trim()) {
-        $('#error-dialog').get()[0].showModal();
+        dialog.open();
         return false;
     }
     localStorage.setItem('pseudo', pseudo);
     // Change to join screen
-    router.redirect('join');
+    routerService.redirect('join');
 }
 
 // Document is ready
@@ -25,4 +29,6 @@ $(() => {
     if (localStorage.getItem('pseudo')) {
         $('#pseudo').val(localStorage.getItem('pseudo'));
     }
+    // Create dialog
+    dialog = dialogService.createDialogWithContent('error', 'Le pseudo est requis', {type: 'primary', label: 'Fermer'}, 'center');
 });
