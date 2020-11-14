@@ -14,7 +14,7 @@ if (require('electron-squirrel-startup')) {
 /* --- Initialisation --- */
 
 app.allowRendererProcessReuse = true;
-global.eventEmitter = new events.EventEmitter();
+global.wikipathEvent = new events.EventEmitter();
 
 /* --- Functions --- */
 

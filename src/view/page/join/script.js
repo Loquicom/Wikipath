@@ -25,13 +25,14 @@ function join() {
         return false;
     }
     // Send code to the main process to check if is valid an wait for the response
-    ipcRenderer.send('connection-code', code);
+    ipcRenderer.send('connection-code', {code: code, pseudo: localStorage.getItem('pseudo')});
     // Show loading
     loader.open();
 }
 
 // Events
-ipcRenderer.on('connect', () => {
+ipcRenderer.on('connected', () => {
+    loader.close();
     routerService.redirect('lobby');
 });
 
