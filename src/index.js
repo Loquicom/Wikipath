@@ -71,6 +71,7 @@ app.on('activate', () => {
 });
 // Application stop
 app.on('quit', () => {
- // TODO
+  console.log('Bye');
+  // TODO
 });
 

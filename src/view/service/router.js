@@ -1,9 +1,10 @@
+// Imports
 const path = require('path');
+const file = require('../../helper/file');
 
+// Parameters
 const prefix = '../page/';
-const route = {
-    menu: 'menu/index.html'
-}
+const route = {};
 
 class RouterService {
 
@@ -19,18 +20,30 @@ class RouterService {
             }
         }
         // Get path to the file
+        let filepath;
         if (route[dest]) {
-            const filepath = path.join(__dirname, prefix, route[dest]);
-            if (filepath[filepath.length - 1] === '/') {
-                filepath = filepath.substring(0, filepath.length - 1);
+            // Check if a rule exist for the destination
+            filepath = path.join(__dirname, prefix, route[dest]);
+        } else {
+            // Otherwise check if a folder exist for the destination
+            filepath = path.join(__dirname, prefix, dest, 'index.html');
+            if (!file.exist(filepath)) {
+                return false;
             }
-            return filepath + paramsQuery;
         }
-        return false;
+        // Add GET parameter
+        if (filepath[filepath.length - 1] === '/') {
+            filepath = filepath.substring(0, filepath.length - 1);
+        }
+        return filepath + paramsQuery;
     }
 
     redirect(dest, params) {
-        document.location = this.path(dest, params);
+        const filepath = this.path(dest, params);;
+        if (!filepath) {
+            return false;
+        }
+        document.location = filepath;
     }
 
     reload() {
