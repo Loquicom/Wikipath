@@ -2,8 +2,20 @@ const regexIp = /^(?:(?:25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)\.){3}(?:25[0-5]|2[
 const regexHex = /^[0-9a-fA-F]{8}$/;
 const iphex = {};
 
+iphex.isIp = function(ip) {
+    return regexIp.test(ip);
+};
+
+iphex.isHex = function(hex) {
+    return regexHex.test(hex);
+};
+
+iphex.isValid = function(code) {
+    return iphex.isIp(code) || iphex.isHex(code);
+}
+
 iphex.encode = function(ip) {
-    if (!regexIp.test(ip)) {
+    if (!iphex.isIp(ip)) {
         return false;
     }
     // Get the 4 number of the ip and transform into hex value
@@ -13,21 +25,13 @@ iphex.encode = function(ip) {
 };
 
 iphex.decode = function(hex) {
-    if (!regexHex.test(hex)) {
+    if (!iphex.isHex(hex)) {
         return false;
     }
     // Split in 4 string of 2 char and transform hex to decimal value
     const number = hex.match(/.{2}/g).map(entry => parseInt(entry, 16));
     // Return ip
     return number.join('.');
-};
-
-iphex.isIp = function(ip) {
-    return regexIp.test(ip);
-};
-
-iphex.isHex = function(hex) {
-    return regexHex.test(hex);
 };
 
 module.exports = iphex;
