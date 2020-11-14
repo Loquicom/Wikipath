@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF-8">
+        <title>Wikipath - Join</title>
+        <link href="../../common/css/simple-grid.min.css" rel="stylesheet" />
+        <link href="../../common/css/nes.min.css" rel="stylesheet" />
+        <link href="../../common/css/pressStart2P.css" rel="stylesheet" />
+        <link href="../../common/css/style.css" rel="stylesheet" />
+        <link href="style.css" rel="stylesheet" />
+    </head>
+    <body>
+        <div class="container">
+            <div class="row">
+                <div class="col-12 center" style="margin-top: 6em;">
+                    <h1>Wikipath</h1>
+                </div>
+            </div>
+            <div class="row" style="margin-top: 10em;">
+                <div class="col-1"></div>
+                <div class="col-6 center">
+                    <div class="nes-field">
+                        <label for="pseudo">Code de la partie</label>
+                        <input type="text" id="code" class="nes-input">
+                      </div>
+                </div>
+                <div class="col-4 center">
+                    <button type="button" class="nes-btn is-primary" style="margin-top: 2em;" onclick="join()">&nbsp;Rejoindre&nbsp;</button>
+                </div>
+                <div class="col-1"></div>
+            </div>
+        </div>
+        <!-- Return button -->
+        <button type="button" class="nes-btn is-error return-btn" onclick="back()"><- Retour</button>
+
+        <!-- Load personnal js -->
+        <script type="text/javascript" src="script.js"></script>
+    </body>
+</html>

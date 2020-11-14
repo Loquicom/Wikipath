@@ -1,6 +1,7 @@
 const { app, BrowserView } = require('electron');
 const path = require('path');
 const window = require('./helper/window');
+const file = require('./helper/file');
 
 /* --- Squirrel --- */
 
@@ -12,10 +13,12 @@ if (require('electron-squirrel-startup')) {
 /* --- Initialisation --- */
 
 app.allowRendererProcessReuse = true;
+global.eventEmitter = new events.EventEmitter();
 
 /* --- Functions --- */
 
 function main() {
+  loadMainProcessFiles();
   const mainWindow = window.new(path.join(__dirname, 'view/page/menu/index.html'));
 
   /*
