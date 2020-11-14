@@ -15,9 +15,9 @@
                     <h1>Wikipath</h1>
                 </div>
             </div>
-            <div class="row">
+            <div class="row" style="margin-top: 8em;">
                 <div class="col-2"></div>
-                <div class="col-8 center" style="margin-top: 8em;">
+                <div class="col-8 center">
                     <div class="nes-field">
                         <label for="pseudo">Pseudo</label>
                         <input type="text" id="pseudo" class="nes-input">
@@ -28,14 +28,24 @@
             <div class="row" style="margin-top: 5em;">
                 <div class="col-2"></div>
                 <div class="col-4 center">
-                    <button type="button" class="nes-btn">&nbsp;H&eacute;berger&nbsp;</button>
+                    <button type="button" class="nes-btn is-disabled" disabled>&nbsp;H&eacute;berger&nbsp;</button>
                 </div>
                 <div class="col-4 center">
-                    <button type="button" class="nes-btn is-primary">&nbsp;Rejoindre&nbsp;</button>
+                    <button type="button" class="nes-btn is-primary" onclick="join()">&nbsp;Rejoindre&nbsp;</button>
                 </div>
                 <div class="col-2"></div>
             </div>
         </div>
+
+        <!-- Error dialog -->
+        <dialog class="nes-dialog is-rounded" id="error-dialog">
+            <form method="dialog">
+                <p>Le psuedo est requis</p>
+                <menu class="dialog-menu center">
+                    <button class="nes-btn is-primary">Fermer</button>
+                </menu>
+            </form>
+        </dialog>
 
         <!-- Load personnal js -->
         <script type="text/javascript" src="script.js"></script>
