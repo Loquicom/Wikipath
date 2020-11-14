@@ -46,5 +46,5 @@ $(() => {
     dialog = dialogService.createDialog('error', {type: 'primary', label: 'Fermer'}, 'center');
     loader = loaderService.getLoader();
     loader.setColor(loaderService.COLOR.BLUE);
-    loader.setSpeed(loaderService.SPEED.FAST);
+    loader.setSpeed(loaderService.SPEED.FASTEST);
 })

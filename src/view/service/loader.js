@@ -11,7 +11,9 @@ const CHECKERBOARD = 'is-pattern';
 
 const NORMAL = 100;
 const FAST = 50;
-const SLOW = 200;
+const FASTEST = 25
+const SLOW = 150;
+const SLOWEST = 200;
 
 // Variable
 let loader;
@@ -22,6 +24,7 @@ class Loader {
     #color
     #speed
     #progress = 0;
+    #modif = 1
     #interval
     #open = false;
 
@@ -44,18 +47,24 @@ class Loader {
     }
 
     setSpeed(speed) {
-        if ([SLOW, NORMAL, FAST].indexOf(speed) === -1) {
+        if ([SLOWEST, SLOW, NORMAL, FAST, FASTEST].indexOf(speed) === -1) {
             return false;
         }
         this.#speed = speed;
     }
 
     open() {
-        //console.log(this.#color, this.#speed);
         this.#open = true;
         this.#dialog.open();
         this.#interval = setInterval(() => {
-            this.#progress = ++this.#progress % 100;
+            // Change direction of progression 
+            if (this.#progress > 99) {
+                this.#modif = -1;
+            } else if (this.#progress < 1) {
+                this.#modif = 1;
+            }
+            // Update progression and loader bar
+            this.#progress += this.#modif;
             this.#dialog.setContent(`<progress class="nes-progress ${this.#color}" value="${this.#progress}" max="100" style="min-width: 400px"></progress>`)
         }, this.#speed);
     }
@@ -91,8 +100,10 @@ module.exports = {
         CHECKERBOARD: CHECKERBOARD
     },
     SPEED: {
+        SLOWEST: SLOWEST,
         SLOW: SLOW,
         NORMAL: NORMAL,
-        FAST: FAST
+        FAST: FAST,
+        FASTEST: FASTEST
     }
 };
