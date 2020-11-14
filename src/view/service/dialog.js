@@ -8,7 +8,6 @@ class Dialog {
 
     constructor(name, buttons = [], position = 'right') {
         this.id += `-${name}`;
-        console.log(this.dialogHTML(this.id, buttons, position));
         $('body').append(this.dialogHTML(this.id, buttons, position));
         this.dialog = $(`#${this.id}`).get()[0];
     }
