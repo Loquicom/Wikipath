@@ -12,6 +12,13 @@ class Dialog {
         this.dialog = $(`#${this.id}`).get()[0];
     }
 
+    onClose(callback) {
+        if (typeof callback !== 'function') {
+            return false;
+        }
+        this.dialog.addEventListener('close', callback);
+    }
+
     open(content) {
         if (content) {
             this.setContent(content);
@@ -43,6 +50,10 @@ class Dialog {
             return;
         }
         $(`#${this.id}-menu`).removeClass().addClass(`dialog-menu ${position}`);
+    }
+
+    isOpen() {
+        return this.dialog.open;
     }
 
     dialogHTML(id, buttons = [], position = 'right') {
