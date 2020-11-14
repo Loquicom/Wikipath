@@ -1,5 +1,6 @@
 const { app, BrowserView } = require('electron');
 const path = require('path');
+const events = require('events');
 const window = require('./helper/window');
 const file = require('./helper/file');
 

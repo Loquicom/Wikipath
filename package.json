@@ -17,6 +17,9 @@
     "email": "29797812+Loquicom@users.noreply.github.com"
   },
   "license": "MIT",
+  "engines": {
+    "node": ">=12"
+  },
   "config": {
     "forge": {
       "packagerConfig": {},
