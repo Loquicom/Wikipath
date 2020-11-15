@@ -15,12 +15,13 @@ if (require('electron-squirrel-startup')) {
 
 app.allowRendererProcessReuse = true;
 global.wikipathEvent = new events.EventEmitter();
+global.mainWindow = null;
 
 /* --- Functions --- */
 
 function main() {
   loadMainProcessFiles();
-  const mainWindow = window.new(path.join(__dirname, 'view/page/menu/index.html'));
+  mainWindow = window.new(path.join(__dirname, 'view/page/menu/index.html'));
 
   /*
   Gestion de base des fenetres Wikipedia

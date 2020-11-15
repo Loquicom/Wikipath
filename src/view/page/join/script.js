@@ -1,13 +1,5 @@
-// Imports
-const $ = require('jquery');
-const { ipcRenderer } = require('electron');
-const routerService = require('../../service/router');
-const dialogService = require('../../service/dialog');
-const loaderService = require('../../service/loader');
-
 // Varibles
 let dialog;
-let loader;
 let progress = 0;
 let interval;
 
@@ -45,7 +37,6 @@ ipcRenderer.on('invalid-code', (event, code) => {
 // When DOM is ready
 $(() => {
     dialog = dialogService.createDialog('error', {type: 'primary', label: 'Fermer'}, 'center');
-    loader = loaderService.getLoader();
     loader.setColor(loaderService.COLOR.BLUE);
     loader.setSpeed(loaderService.SPEED.FASTEST);
 })

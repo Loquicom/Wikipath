@@ -1,8 +1,3 @@
-// Imports
-const $ = require('jquery');
-const routerService = require ('../../service/router');
-const dialogService = require ('../../service/dialog');
-
 // Variable
 let dialog = null;
 

@@ -94,7 +94,7 @@ class Client {
             this.#ws.terminate();
             // Call broken
             if (typeof this.#event.broken === 'function') {
-                this.#event.broken(ws.clientId);
+                this.#event.broken();
             }
         }, 30000 * 2);
     }
