@@ -76,6 +76,7 @@ app.on('activate', () => {
 });
 // Application stop
 app.on('quit', () => {
+  wikipathEvent.emit('stop');
   console.log('Bye');
   // TODO
 });

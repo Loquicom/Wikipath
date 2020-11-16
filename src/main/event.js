@@ -25,3 +25,8 @@ ipcMain.on('connection-code', (event, data) => {
     // Send event to join server
     wikipathEvent.emit('connection', ip, pseudo);
 });
+
+// Quit event
+ipcMain.on('quit-game', () => {
+    wikipathEvent.emit('disconnection');
+});

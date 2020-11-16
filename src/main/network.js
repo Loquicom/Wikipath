@@ -21,20 +21,23 @@ function join(ip, pseudo) {
     client.connect(() => {
         // Register pseudo
         client.send('register', {pseudo: pseudo});
-        setTimeout(() => {
-            if(client) client.close();
-        }, 5000);
     });
+}
+
+function quit() {
+    client.send('quit'),
+    client.close();
 }
 
 /* --- Server events --- */
 function setupEvent() {
+    // Connection error between server and client
     client.on('error', (err) => {
-
+        mainWindow.webContents.send('error-connection'); 
     });
-    
+    // Broken connection
     client.on('broken', () => {
-    
+        mainWindow.webContents.send('error-broken-connection');
     });
 }
 
@@ -67,6 +70,16 @@ function setupAction() {
 
 /* --- Wikipath event --- */
 
+wikipathEvent.on('stop', () => {
+    if (client !== null) {
+        client.close();
+    }
+});
+
 wikipathEvent.on('connection', (ip, pseudo) => {
     join(ip, pseudo);
+});
+
+wikipathEvent.on('disconnection', () => {
+    quit();
 });
