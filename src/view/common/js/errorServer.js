@@ -6,28 +6,29 @@ function goMenuScreen() {
     routerService.redirect('menu');
 }
 
-// Events
-ipcRenderer.on('error-in-game', (event, message) => {
+function errorDialog(msg) {
     loader.close();
     errorServerDialog.onClose(goMenuScreen);
-    errorServerDialog.setContent('Le serveur est en jeu<br>Retour au menu');
+    errorServerDialog.setContent(msg + '<br>Retour au menu');
     errorServerDialog.open();
+}
+
+// Events
+ipcRenderer.on('error-connection', (event, message) => {
+    errorDialog('Erreur de connexion avec le serveur');
+});
+ipcRenderer.on('error-broken-connection', (event, message) => {
+    errorDialog('Connexion perdue avec le serveur');
+});
+ipcRenderer.on('error-in-game', (event, message) => {
+    errorDialog('Le serveur est en jeu');
 });
 ipcRenderer.on('error-server-full', (event, message) => {
-    loader.close();
-    errorServerDialog.onClose(goMenuScreen);
-    errorServerDialog.setContent('Le serveur est complet<br>Retour au menu');
-    errorServerDialog.open();
+    errorDialog('Le serveur est complet');
 });
 ipcRenderer.on('error-unknown-command', (event, message) => {
-    loader.close();
-    errorServerDialog.onClose(goMenuScreen);
-    errorServerDialog.setContent('Erreur de communication<br>Retour au menu');
-    errorServerDialog.open();
+    errorDialog('Erreur de communication');
 });
 ipcRenderer.on('error-unknown-command', (event, message) => {
-    loader.close();
-    errorServerDialog.onClose(goMenuScreen);
-    errorServerDialog.setContent('Erreur de inconnue<br>Retour au menu');
-    errorServerDialog.open();
+    errorDialog('Erreur inconnue');
 });
