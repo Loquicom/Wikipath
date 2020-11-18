@@ -18,7 +18,6 @@ for (let key of keys) {
         for(let i = 0; i < keySplit.length; i++) {
             const k = keySplit[i];
             if (i === keySplit.length - 1) {
-                console.log(translations, key);
                 data[k] = i18n._(key);
             } else {
                 if (!data[k]) {
@@ -32,5 +31,4 @@ for (let key of keys) {
 
 // Add translation to the scope and compile template with translations
 scope['_'] = translations;
-console.log(scope);
 document.getElementById('template').innerHTML = template(scope);
