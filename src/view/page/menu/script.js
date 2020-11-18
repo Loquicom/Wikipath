@@ -13,7 +13,7 @@ function join() {
         dialog.open();
         return false;
     }
-    localStorage.setItem('pseudo', pseudo);
+    storage.set('pseudo', pseudo);
     // Change to join screen
     routerService.redirect('join');
 }
@@ -21,8 +21,8 @@ function join() {
 // Document is ready
 $(() => {
     // Set last pseudo in pseudo input
-    if (localStorage.getItem('pseudo')) {
-        $('#pseudo').val(localStorage.getItem('pseudo'));
+    if (storage.exist('pseudo')) {
+        $('#pseudo').val(storage.get('pseudo'));
     }
     // Create dialog
     dialog = dialogService.createDialogWithContent('error', 'Le pseudo est requis', {type: 'primary', label: 'Fermer'}, 'center');

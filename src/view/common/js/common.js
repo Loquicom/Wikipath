@@ -3,6 +3,7 @@ const $ = require('jquery');
 const { ipcRenderer } = require('electron');
 const path = require('path');
 const i18n = require('../../../helper/i18n');
+const storage = require('../../service/storage');
 const routerService = require('../../service/router');
 const dialogService = require('../../service/dialog');
 const loaderService = require('../../service/loader');
