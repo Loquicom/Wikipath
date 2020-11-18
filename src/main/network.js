@@ -63,8 +63,23 @@ function setupAction() {
     client.action('config', (config) => {
         // Get config
         serverConfig = config;
+    });
+    // Get informations about all other players
+    client.action('register', (players) => {
         // Client is ready to show lobby
-        wikipathEvent.emit('server-join');
+        wikipathEvent.emit('server-join', players);
+    });
+    // New player join
+    client.action('new-player', (data) => {
+
+    });
+    // Player quit
+    client.action('player-quit', (data) => {
+
+    });
+    // Default action
+    client.action('default', (data) => {
+        // Do nothing
     });
 }
 

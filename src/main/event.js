@@ -18,9 +18,9 @@ ipcMain.on('connection-code', (event, data) => {
         ip = ipHex.decode(code);
     }
     // Wait the answer to be sure the connection is established
-    wikipathEvent.once('server-join', (result) => {
+    wikipathEvent.once('server-join', (players) => {
         // Inform renderer process
-        event.sender.send('connected');
+        event.sender.send('connected', players);
     });
     // Send event to join server
     wikipathEvent.emit('connection', ip, pseudo);

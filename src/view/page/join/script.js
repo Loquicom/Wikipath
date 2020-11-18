@@ -23,7 +23,8 @@ function join() {
 }
 
 // Events
-ipcRenderer.on('connected', () => {
+ipcRenderer.on('connected', (event, players) => {
+    storage.set('players', players);
     loader.close();
     routerService.redirect('lobby');
 });
