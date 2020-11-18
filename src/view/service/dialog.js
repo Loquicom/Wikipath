@@ -4,30 +4,28 @@ const $ = require('jquery');
 class Dialog {
 
     id = 'dialog';
-    dialog = null;
 
     constructor(name, buttons = [], position = 'right') {
         this.id += `-${name}`;
         $('body').append(this.dialogHTML(this.id, buttons, position));
-        this.dialog = $(`#${this.id}`).get()[0];
     }
 
     onClose(callback) {
         if (typeof callback !== 'function') {
             return false;
         }
-        this.dialog.addEventListener('close', callback);
+        this.getDialog().addEventListener('close', callback);
     }
 
     open(content) {
         if (content) {
             this.setContent(content);
         }
-        this.dialog.showModal();
+        this.getDialog().showModal();
     }
 
     close() {
-        this.dialog.close();
+        this.getDialog().close();
     }
 
     setContent(content) {
@@ -53,7 +51,11 @@ class Dialog {
     }
 
     isOpen() {
-        return this.dialog.open;
+        return this.getDialog().open;
+    }
+
+    getDialog() {
+        return $(`#${this.id}`).get()[0];
     }
 
     dialogHTML(id, buttons = [], position = 'right') {

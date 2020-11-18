@@ -1,4 +1,4 @@
-const regexIp = /^(?:(?:25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)\.){3}(?:25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)$/g;
+const regexIp = /^(?:(?:25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)\.){3}(?:25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)$/;
 const regexHex = /^[0-9a-fA-F]{8}$/;
 const iphex = {};
 
@@ -11,7 +11,7 @@ iphex.isHex = function(hex) {
 };
 
 iphex.isValid = function(code) {
-    return iphex.isIp(code) || iphex.isHex(code);
+    return (iphex.isIp(code) || iphex.isHex(code));
 }
 
 iphex.encode = function(ip) {
