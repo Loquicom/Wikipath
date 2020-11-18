@@ -1,0 +1,14 @@
+{
+    "common": {
+        "back": "Back",
+        "quit": "Quit"
+    },
+    "menu": {
+        "join": "Join",
+        "host": "Host"
+    },
+    "join": {
+        "code": "Game code",
+        "connect": "Connection"
+    }
+}

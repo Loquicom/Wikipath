@@ -2,23 +2,25 @@
 <html>
     <head>
         <meta charset="UTF-8">
-        <title>Wikipath - Join</title>
+        <title>Wikipath - Lobby</title>
         <link href="../../common/css/simple-grid.min.css" rel="stylesheet" />
         <link href="../../common/css/nes.min.css" rel="stylesheet" />
         <link href="../../common/css/pressStart2P.css" rel="stylesheet" />
         <link href="../../common/css/style.css" rel="stylesheet" />
         <link href="style.css" rel="stylesheet" />
     </head>
-    <body>
+    <body id="template">
         <div class="container">
         </div>
         <!-- Return button -->
-        <button type="button" class="nes-btn is-error quit-btn" onclick="quit()"><- Quitter</button>
+        <button type="button" class="nes-btn is-error quit-btn" onclick="quit()"><- {{_.common.quit}}</button>
 
         <!-- Load common js -->
-        <script type="text/javascript" src="../../common/js/commonImport.js"></script>
+        <script type="text/javascript" src="../../common/js/common.js"></script>
         <script type="text/javascript" src="../../common/js/errorServer.js"></script>
         <!-- Load personnal js -->
         <script type="text/javascript" src="script.js"></script>
+        <!-- Load Template -->
+        <script type="text/javascript" src="../../common/js/template.js"></script>
     </body>
 </html>

@@ -1,0 +1,14 @@
+{
+    "common": {
+        "back": "Retour",
+        "quit": "Quitter"
+    },
+    "menu": {
+        "join": "Rejoindre",
+        "host": "H&eacute;berger"
+    },
+    "join": {
+        "code": "Code de la partie",
+        "connect": "Connexion"
+    }
+}

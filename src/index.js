@@ -20,6 +20,9 @@ global.mainWindow = null;
 /* --- Functions --- */
 
 function main() {
+  
+  
+
   loadMainProcessFiles();
   mainWindow = window.new(path.join(__dirname, 'view/page/menu/index.html'));
 
