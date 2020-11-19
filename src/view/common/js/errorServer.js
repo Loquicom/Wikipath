@@ -17,6 +17,9 @@ function errorDialog(msg) {
 ipcRenderer.on('error-connection', (event, message) => {
     errorDialog('Erreur de connexion avec le serveur');
 });
+ipcRenderer.on('error-disconnection', (event, message) => {
+    errorDialog('Déconnecté du serveur');
+});
 ipcRenderer.on('error-broken-connection', (event, message) => {
     errorDialog('Connexion perdue avec le serveur');
 });

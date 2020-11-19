@@ -35,6 +35,10 @@ function setupEvent() {
     client.on('error', (err) => {
         mainWindow.webContents.send('error-connection'); 
     });
+    // Disconnected by the server
+    client.on('disconnection', () => {
+        mainWindow.webContents.send('error-disconnection');
+    });
     // Broken connection
     client.on('broken', () => {
         mainWindow.webContents.send('error-broken-connection');
@@ -67,7 +71,7 @@ function setupAction() {
     // Get informations about all other players
     client.action('register', (players) => {
         // Client is ready to show lobby
-        wikipathEvent.emit('server-join', players);
+        wikipathEvent.emit('server-join', {players: players, name: serverConfig.name});
     });
     // New player join
     client.action('new-player', (data) => {

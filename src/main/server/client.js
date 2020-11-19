@@ -10,6 +10,7 @@ class Client {
     #event = {};
     #action = {};
     #pingTimeout;
+    #selfClosed = false;
 
     constructor(addr, port = 8080) {
         this.#addr = addr;
@@ -67,6 +68,9 @@ class Client {
         });
         // Clear timeout when server close
         this.#ws.on('close', () => {
+            if (!this.#selfClosed && typeof this.#event.disconnection === 'function') {
+                this.#event.disconnection();
+            }
             clearTimeout(this.#pingTimeout);
         });
     }
@@ -79,6 +83,7 @@ class Client {
     close(callback = null) {
         this._isConnected();
         // Close connection
+        this.#selfClosed = true;
         this.#ws.close();
         // Callback
         if (typeof callback === 'function') {
