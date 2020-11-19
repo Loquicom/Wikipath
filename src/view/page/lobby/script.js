@@ -10,7 +10,17 @@ function quit() {
 }
 
 function ready() {
-    console.log(self);
+    $($(`#player-${self.id}-ready`).children()[0]).removeClass('is-empty');
+    $('.ready-btn').each((index, elt) => {
+        $(elt).addClass('is-primary');
+    });
+}
+
+function unready() {
+    $($(`#player-${self.id}-ready`).children()[0]).addClass('is-empty');
+    $('.ready-btn').each((index, elt) => {
+        $(elt).removeClass('is-primary');
+    });
 }
 
 function generateTableContent(players) {
@@ -19,8 +29,8 @@ function generateTableContent(players) {
     for (let player of players) {
         const ready = (player.ready) ? '' : 'is-empty';
         result += `<tr id="player-${player.id}">`;
-        result += `<td>${player.pseudo}</td>`;
-        result += `<td><i class="nes-icon star ${ready}"></i></td>`;
+        result += `<td id="player-${player.id}-pseudo">${player.pseudo}</td>`;
+        result += `<td id="player-${player.id}-ready"><i class="nes-icon star ${ready}"></i></td>`;
         result += `</tr>`;
     }
     return result;
@@ -31,4 +41,11 @@ function generateTableContent(players) {
 // When DOM is ready
 $(() => {
     $('#lobby-content').html(generateTableContent(players));
+    $('.ready-btn').on('click', function () {
+        if ($(this).hasClass('is-primary')) {
+            unready();
+        } else {
+            ready();
+        }
+    });
 });
