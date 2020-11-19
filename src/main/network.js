@@ -73,9 +73,10 @@ function setupAction() {
         serverConfig = config;
     });
     // Get informations about all other players
-    client.action('register', (players) => {
+    client.action('register', (data) => {
+        data.name = serverConfig.name;
         // Client is ready to show lobby
-        wikipathEvent.emit('server-join', {players: players, name: serverConfig.name});
+        wikipathEvent.emit('server-join', data);
     });
     // New player join
     client.action('new-player', (data) => {
@@ -87,7 +88,7 @@ function setupAction() {
     });
     // Default action
     client.action('default', (data) => {
-        // Do nothing
+        mainWindow.webContents.send('error-unknown');
     });
 }
 

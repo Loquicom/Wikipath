@@ -25,6 +25,7 @@ function join() {
 // Events
 ipcRenderer.on('connected', (event, data) => {
     storage.set('players', data.players);
+    storage.set('self', data.self);
     storage.set('server-name', data.name);
     loader.close();
     routerService.redirect('lobby');
