@@ -10,6 +10,7 @@ class Client {
     #event = {};
     #action = {};
     #pingTimeout;
+    #connected = false;
     #selfClosed = false;
 
     constructor(addr, port = 8080) {
@@ -33,6 +34,7 @@ class Client {
         this.#ws = new WebSocket(`ws://${this.#addr}:${this.#port}`);
         // When connection is open call callback
         this.#ws.on('open', () => {
+            this.#connected = true;
             if (typeof callback === 'function') {
                 callback();
             }
@@ -68,10 +70,16 @@ class Client {
         });
         // Clear timeout when server close
         this.#ws.on('close', () => {
-            if (!this.#selfClosed && typeof this.#event.disconnection === 'function') {
-                this.#event.disconnection();
+            if (this.#connected) {
+                if (!this.#selfClosed && typeof this.#event.disconnection === 'function') {
+                    this.#event.disconnection();
+                }
+                clearTimeout(this.#pingTimeout);
+            } else {
+                if (typeof this.#event.notfound === 'function') {
+                    this.#event.notfound();
+                }
             }
-            clearTimeout(this.#pingTimeout);
         });
     }
 

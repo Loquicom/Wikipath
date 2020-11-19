@@ -31,6 +31,10 @@ function quit() {
 
 /* --- Server events --- */
 function setupEvent() {
+    // Server not found
+    client.on('notfound', () => {
+        mainWindow.webContents.send('error-not-found');
+    })
     // Connection error between server and client
     client.on('error', (err) => {
         mainWindow.webContents.send('error-connection'); 

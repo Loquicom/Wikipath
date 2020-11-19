@@ -14,6 +14,9 @@ function errorDialog(msg) {
 }
 
 // Events
+ipcRenderer.on('error-notfound', (event, message) => {
+    errorDialog('error.notfound');
+});
 ipcRenderer.on('error-connection', (event, message) => {
     errorDialog('error.connection');
 });
