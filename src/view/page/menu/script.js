@@ -25,5 +25,5 @@ $(() => {
         $('#pseudo').val(storage.get('pseudo'));
     }
     // Create dialog
-    dialog = dialogService.createDialogWithContent('error', 'Le pseudo est requis', {type: 'primary', label: 'Fermer'}, 'center');
+    dialog = dialogService.createDialogWithContent('error', _('menu.error.pseudo'), {type: 'primary', label: _('common.close')}, 'center');
 });

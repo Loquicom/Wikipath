@@ -1,5 +1,5 @@
 // Variables
-const errorServerDialog = dialogService.createDialog('error-server', {type: 'primary', label: 'Fermer'}, 'center');
+const errorServerDialog = dialogService.createDialog('error-server', {type: 'primary', label: _('common.close')}, 'center');
 
 // Functions
 function goMenuScreen() {

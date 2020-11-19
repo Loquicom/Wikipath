@@ -2,6 +2,7 @@
     "common": {
         "back": "Back",
         "quit": "Quit",
+        "close": "Close",
         "go": {
             "menu": "Back to the menu"
         }
@@ -18,11 +19,20 @@
     },
     "menu": {
         "join": "Join",
-        "host": "Host"
+        "host": "Host",
+        "error": {
+            "pseudo": "Pseudo is required"
+        }
     },
     "join": {
         "code": "Game code",
-        "connect": "Connection"
+        "connect": "Connection",
+        "error": {
+            "code": {
+                "required": "Code is required",
+                "invalid": "${code} code is invalid"
+            }
+        }
     },
     "lobby": {
         "player": "Players",

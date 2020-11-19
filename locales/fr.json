@@ -2,6 +2,7 @@
     "common": {
         "back": "Retour",
         "quit": "Quitter",
+        "close": "Fermer",
         "go": {
             "menu": "Retour au menu"
         }
@@ -18,11 +19,20 @@
     },
     "menu": {
         "join": "Rejoindre",
-        "host": "H&eacute;berger"
+        "host": "H&eacute;berger",
+        "error": {
+            "pseudo": "Le pseudo est requis"
+        }
     },
     "join": {
         "code": "Code de la partie",
-        "connect": "Connexion"
+        "connect": "Connexion",
+        "error": {
+            "code": {
+                "required": "Le code est requis",
+                "invalid": "Le code : ${code} est invalide"
+            }
+        }
     },
     "lobby": {
         "player": "Joueurs",

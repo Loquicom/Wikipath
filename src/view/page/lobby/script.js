@@ -1,13 +1,16 @@
-const { read } = require("fs");
-
 // Variables
 const players = storage.get('players');
+const self = storage.get('self');
 scope.lobby = {name: storage.get('server-name')};
 
 // Functions
 function quit() {
     ipcRenderer.send('quit-game');
     routerService.redirect('menu');
+}
+
+function ready() {
+    console.log(self);
 }
 
 function generateTableContent(players) {
@@ -22,6 +25,8 @@ function generateTableContent(players) {
     }
     return result;
 }
+
+// Events
 
 // When DOM is ready
 $(() => {
