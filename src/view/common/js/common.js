@@ -27,3 +27,4 @@ function convertToArray(obj) {
 
 // Codes
 i18n.config(path.join(__dirname, '../../../../locales'));
+const _ = i18n._;

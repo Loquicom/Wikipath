@@ -15,7 +15,7 @@ for (let key of keys) {
         for(let i = 0; i < keySplit.length; i++) {
             const k = keySplit[i];
             if (i === keySplit.length - 1) {
-                data[k] = i18n._(key);
+                data[k] = _(key);
             } else {
                 if (!data[k]) {
                     data[k] = {}
