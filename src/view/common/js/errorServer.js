@@ -9,29 +9,29 @@ function goMenuScreen() {
 function errorDialog(msg) {
     loader.close();
     errorServerDialog.onClose(goMenuScreen);
-    errorServerDialog.setContent(msg + '<br>Retour au menu');
+    errorServerDialog.setContent(_(msg) + '<br>' + _('common.go.menu'));
     errorServerDialog.open();
 }
 
 // Events
 ipcRenderer.on('error-connection', (event, message) => {
-    errorDialog('Erreur de connexion avec le serveur');
+    errorDialog('error.connection');
 });
 ipcRenderer.on('error-disconnection', (event, message) => {
-    errorDialog('Déconnecté du serveur');
+    errorDialog('error.disconnection');
 });
 ipcRenderer.on('error-broken-connection', (event, message) => {
-    errorDialog('Connexion perdue avec le serveur');
+    errorDialog('error.broken');
 });
 ipcRenderer.on('error-in-game', (event, message) => {
-    errorDialog('Le serveur est en jeu');
+    errorDialog('error.ingame');
 });
 ipcRenderer.on('error-server-full', (event, message) => {
-    errorDialog('Le serveur est complet');
+    errorDialog('error.full');
 });
 ipcRenderer.on('error-unknown-command', (event, message) => {
-    errorDialog('Erreur de communication');
+    errorDialog('error.command');
 });
-ipcRenderer.on('error-unknown-command', (event, message) => {
-    errorDialog('Erreur inconnue');
+ipcRenderer.on('error-unknown', (event, message) => {
+    errorDialog('error.unknown');
 });
