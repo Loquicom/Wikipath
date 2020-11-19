@@ -52,7 +52,7 @@ function changeLocale(locale) {
     return config(directory, locale);
 }
 
-function translate(key) {
+function translate(key, params = {}) {
     // Get translation
     const keys = key.split('.');
     let translation = translations;
@@ -69,7 +69,12 @@ function translate(key) {
         }
         translation = key;
     }
-    return entities.decode(translation);
+    // Get the value and replace variables
+    let result = entities.decode(translation);
+    for(let keyParam in params) {
+        result = result.replaceAll('${' + keyParam + '}', params[keyParam]);
+    }
+    return result;
 }
 
 function addTranslation(key) {
