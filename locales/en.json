@@ -1,7 +1,20 @@
 {
     "common": {
         "back": "Back",
-        "quit": "Quit"
+        "quit": "Quit",
+        "go": {
+            "menu": "Back to the menu"
+        }
+    },
+    "error": {
+        "notfound": "Unable to connect to the server",
+        "connection": "Communication error with the server",
+        "disconnection": "Disconnected from the server",
+        "broken": "Lost connection to the server",
+        "ingame": "Server is in game",
+        "full": "Server is full",
+        "command": "Unknown command from the server",
+        "unknown": "Unknown error"
     },
     "menu": {
         "join": "Join",
@@ -10,5 +23,9 @@
     "join": {
         "code": "Game code",
         "connect": "Connection"
+    },
+    "lobby": {
+        "player": "Players",
+        "ready": "Ready;"
     }
 }
