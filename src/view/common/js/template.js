@@ -1,6 +1,3 @@
-// Imports
-const Handlebars = require('handlebars');
-
 // Get html and create template
 const html = document.getElementById('template').innerHTML;
 const template = Handlebars.compile(html);
