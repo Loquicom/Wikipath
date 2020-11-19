@@ -1,4 +1,4 @@
-// Varibles
+// Variables
 let dialog;
 let progress = 0;
 let interval;
@@ -23,8 +23,9 @@ function join() {
 }
 
 // Events
-ipcRenderer.on('connected', (event, players) => {
-    storage.set('players', players);
+ipcRenderer.on('connected', (event, data) => {
+    storage.set('players', data.players);
+    storage.set('server-name', data.name);
     loader.close();
     routerService.redirect('lobby');
 });

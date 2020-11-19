@@ -11,9 +11,42 @@
     </head>
     <body id="template">
         <div class="container">
+            <div class="row">
+                <div class="col-12 center">
+                    <h2>Lobby - {{lobby.name}}</h2>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-12 center">
+                    <button type="button" class="nes-btn ready-btn" onclick="ready()">{{_.lobby.ready}}</button>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-1"></div>
+                <div class="col-10 center">
+                    <div class="nes-table-responsive">
+                        <table class="nes-table is-bordered is-centered" style="width: 99%;">
+                            <thead>
+                                <tr>
+                                    <th>{{_.lobby.player}}</th>
+                                    <th>{{_.lobby.ready}}</th>
+                                </tr>
+                            </thead>
+                            <tbody id="lobby-content">
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+                <div class="col-1"></div>
+            </div>
+            <div class="row">
+                <div class="col-12 center">
+                    <button type="button" class="nes-btn ready-btn" onclick="ready()">{{_.lobby.ready}}</button>
+                </div>
+            </div>
         </div>
         <!-- Return button -->
-        <button type="button" class="nes-btn is-error quit-btn" onclick="quit()"><- {{_.common.quit}}</button>
+        <button type="button" class="nes-btn is-error quit-btn" onclick="quit()"><-</button>
 
         <!-- Load common js -->
         <script type="text/javascript" src="../../common/js/common.js"></script>
