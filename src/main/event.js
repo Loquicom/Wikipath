@@ -30,3 +30,11 @@ ipcMain.on('connection-code', (event, data) => {
 ipcMain.on('quit-game', () => {
     wikipathEvent.emit('disconnection');
 });
+
+// Ready events
+ipcMain.on('ready', (event) => {
+    wikipathEvent.emit('ready');
+});
+ipcMain.on('unready', (event) => {
+    wikipathEvent.emit('unready');
+});

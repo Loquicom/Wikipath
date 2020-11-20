@@ -14,6 +14,7 @@ function ready() {
     $('.ready-btn').each((index, elt) => {
         $(elt).addClass('is-primary');
     });
+    ipcRenderer.send('ready');
 }
 
 function unready() {
@@ -21,22 +22,44 @@ function unready() {
     $('.ready-btn').each((index, elt) => {
         $(elt).removeClass('is-primary');
     });
+    ipcRenderer.send('unready');
+}
+
+function generateRow(player) {
+    const ready = (player.ready) ? '' : 'is-empty';
+    let result = `<tr id="player-${player.id}">`;
+    result += `<td id="player-${player.id}-pseudo">${player.pseudo}</td>`;
+    result += `<td id="player-${player.id}-ready"><i class="nes-icon star ${ready}"></i></td>`;
+    result += `</tr>`;
+    return result;
 }
 
 function generateTableContent(players) {
     players = convertToArray(players);
     let result = '';
     for (let player of players) {
-        const ready = (player.ready) ? '' : 'is-empty';
-        result += `<tr id="player-${player.id}">`;
-        result += `<td id="player-${player.id}-pseudo">${player.pseudo}</td>`;
-        result += `<td id="player-${player.id}-ready"><i class="nes-icon star ${ready}"></i></td>`;
-        result += `</tr>`;
+        result += generateRow(player);
     }
     return result;
 }
 
 // Events
+ipcRenderer.on('new-player', (event, data) => {
+    players[data.id] = data;
+    storage.set('players', players);
+    $('#lobby-content').append(generateRow(data));
+});
+ipcRenderer.on('player-quit', (event, data) => {
+    delete players[data.id];
+    storage.set('players', players);
+    $(`#player-${data.id}`).remove();
+});
+ipcRenderer.on('player-ready', (event, data) => {
+    $($(`#player-${data.id}-ready`).children()[0]).removeClass('is-empty');
+});
+ipcRenderer.on('player-unready', (event, data) => {
+    $($(`#player-${data.id}-ready`).children()[0]).addClass('is-empty');
+});
 
 // When DOM is ready
 $(() => {

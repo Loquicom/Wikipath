@@ -80,11 +80,18 @@ function setupAction() {
     });
     // New player join
     client.action('new-player', (data) => {
-
+        mainWindow.webContents.send('new-player', data);
     });
     // Player quit
     client.action('player-quit', (data) => {
-
+        mainWindow.webContents.send('player-quit', data);
+    });
+    // Ready or not
+    client.action('player-ready', (data) => {
+        mainWindow.webContents.send('player-ready', data);
+    });
+    client.action('player-unready', (data) => {
+        mainWindow.webContents.send('player-unready', data);
     });
     // Default action
     client.action('default', (data) => {
@@ -106,4 +113,12 @@ wikipathEvent.on('connection', (ip, pseudo) => {
 
 wikipathEvent.on('disconnection', () => {
     quit();
+});
+
+wikipathEvent.on('ready', () => {
+    client.send('ready');
+});
+
+wikipathEvent.on('unready', () => {
+    client.send('unready');
 });
