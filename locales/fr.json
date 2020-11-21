@@ -15,7 +15,8 @@
         "ingame": "Le serveur est un jeu",
         "full": "Le serveur est complet",
         "command": "Commande inconnue venant du serveur",
-        "unknown": "Erreur inconnue"
+        "unknown": "Erreur inconnue",
+        "stop": "Le serveur est fermé"
     },
     "menu": {
         "join": "Rejoindre",

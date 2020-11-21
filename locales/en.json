@@ -15,7 +15,8 @@
         "ingame": "Server is in game",
         "full": "Server is full",
         "command": "Unknown command from the server",
-        "unknown": "Unknown error"
+        "unknown": "Unknown error",
+        "stop": "The server is closed"
     },
     "menu": {
         "join": "Join",

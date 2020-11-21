@@ -25,16 +25,20 @@ function join(ip, pseudo) {
 }
 
 function quit() {
-    client.send('quit'),
+    client.send('quit');
     client.close();
 }
 
 /* --- Server events --- */
 function setupEvent() {
+    // Server stop
+    client.on('serverstop', () => {
+        mainWindow.webContents.send('server-stop'); 
+    });
     // Server not found
     client.on('notfound', () => {
         mainWindow.webContents.send('error-not-found');
-    })
+    });
     // Connection error between server and client
     client.on('error', (err) => {
         mainWindow.webContents.send('error-connection'); 
@@ -95,6 +99,7 @@ function setupAction() {
     });
     // Default action
     client.action('default', (data) => {
+        quit();
         mainWindow.webContents.send('error-unknown');
     });
 }

@@ -57,15 +57,24 @@ class Client {
             const data = this._jsonParse(msg);
             if (!data) return;
             // Use correct action
-            const action = this.#action[data.action] ? this.#action[data.action] : this.#action.default;
-            if (typeof action === 'function') {
-                action(
-                    data.data, 
-                    (respond = {}) => {
-                        this.send(data.action, respond);
-                    }, 
-                    this
-                );
+            if (data.action === '#system.server.stop') {
+                // Server is stopping
+                this.#selfClosed = true;
+                if (typeof this.#event.serverstop === 'function') {
+                    this.#event.serverstop();
+                }
+            } else {
+                // Custom action
+                const action = this.#action[data.action] ? this.#action[data.action] : this.#action.default;
+                if (typeof action === 'function') {
+                    action(
+                        data.data, 
+                        (respond = {}) => {
+                            this.send(data.action, respond);
+                        }, 
+                        this
+                    );
+                }
             }
         });
         // Clear timeout when server close

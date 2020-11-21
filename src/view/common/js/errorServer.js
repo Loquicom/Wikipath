@@ -14,6 +14,9 @@ function errorDialog(msg) {
 }
 
 // Events
+ipcRenderer.on('server-stop', (event, message) => {
+    errorDialog('error.stop');
+});
 ipcRenderer.on('error-notfound', (event, message) => {
     errorDialog('error.notfound');
 });
