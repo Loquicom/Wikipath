@@ -16,7 +16,8 @@
         "full": "Le serveur est complet",
         "command": "Commande inconnue venant du serveur",
         "unknown": "Erreur inconnue",
-        "stop": "Le serveur est fermé"
+        "stop": "Le serveur est fermé",
+        "badprotocol": "Version du serveur incompatible"
     },
     "menu": {
         "join": "Rejoindre",

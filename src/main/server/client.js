@@ -1,21 +1,25 @@
 // Import
 const WebSocket = require('ws');
 
+const DEFAULT_PORT = 8080
+
 // Class client
 class Client {
 
     #ws = null;
     #addr;
     #port;
+    #protocolVersion;
     #event = {};
     #action = {};
     #pingTimeout;
     #connected = false;
     #selfClosed = false;
 
-    constructor(addr, port = 8080) {
+    constructor(addr, port = null, protocolVersion = 1) {
         this.#addr = addr;
-        this.#port = port;
+        this.#port = port ? port : DEFAULT_PORT;
+        this.#protocolVersion = protocolVersion;
     }
 
     on(event, callback) {
@@ -35,9 +39,6 @@ class Client {
         // When connection is open call callback
         this.#ws.on('open', () => {
             this.#connected = true;
-            if (typeof callback === 'function') {
-                callback();
-            }
             // Start broken detection
             this._brokenConnection();
         });
@@ -56,15 +57,33 @@ class Client {
             // Parse message
             const data = this._jsonParse(msg);
             if (!data) return;
-            // Use correct action
-            if (data.action === '#system.server.stop') {
-                // Server is stopping
-                this.#selfClosed = true;
-                if (typeof this.#event.serverstop === 'function') {
-                    this.#event.serverstop();
+            // System action
+            if (data.action.startsWith('#system.server')) {
+                switch (data.action) {
+                    case '#system.server.stop':
+                        // Server is stopping
+                        this.#selfClosed = true;
+                        if (typeof this.#event.serverstop === 'function') {
+                            this.#event.serverstop();
+                        }
+                        break;
+                    case '#system.server.protocol':
+                        // Check protocol version
+                        if (this._sameProtocolVersion(data.data.protocol)) {
+                            // Trigger connect callback after protocol verification
+                            if (typeof callback === 'function') {
+                                callback();
+                            }
+                        }
+                        break;
+                    default:
+                        // Unknown server action === bad protocol version
+                        this._sameProtocolVersion(-1);
                 }
-            } else {
-                // Custom action
+                
+            } 
+            // Use custom action
+            else {
                 const action = this.#action[data.action] ? this.#action[data.action] : this.#action.default;
                 if (typeof action === 'function') {
                     action(
@@ -133,6 +152,19 @@ class Client {
         if (this.#ws === null) {
             throw 'Client not connected';
         }
+    }
+
+    _sameProtocolVersion(version) {
+        // If version is not the same close connection
+        if (version != this.#protocolVersion) {
+            this.close();
+            // Call bad protocol
+            if (typeof this.#event.badprotocol === 'function') {
+                this.#event.badprotocol(version);
+            }
+            return false;
+        }
+        return true;
     }
 
 }

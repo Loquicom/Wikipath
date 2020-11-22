@@ -29,6 +29,9 @@ ipcRenderer.on('error-disconnection', (event, message) => {
 ipcRenderer.on('error-broken-connection', (event, message) => {
     errorDialog('error.broken');
 });
+ipcRenderer.on('error-bad-protocol', (event, message) => {
+    errorDialog('error.badprotocol');
+});
 ipcRenderer.on('error-in-game', (event, message) => {
     errorDialog('error.ingame');
 });

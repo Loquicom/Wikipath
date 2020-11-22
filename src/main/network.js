@@ -1,6 +1,4 @@
 /* --- Imports --- */
-
-const { ipcMain } = require('electron');
 const Client = require('./server/client');
 const constant = require('../constant');
 
@@ -13,14 +11,14 @@ let client = null;
 
 function join(ip, pseudo) {
     // New client
-    client = new Client(ip, constant.PORT);
+    client = new Client(ip, constant.PORT, constant.PROTOCOL_VERSION);
     // Setup client
     setupEvent();
     setupAction();
     // Connection
     client.connect(() => {
         // Register pseudo
-        client.send('register', {pseudo: pseudo});
+        client.send('register', {pseudo: pseudo, protocolVersion: constant.PROTOCOL_VERSION});
     });
 }
 
@@ -50,6 +48,10 @@ function setupEvent() {
     // Broken connection
     client.on('broken', () => {
         mainWindow.webContents.send('error-broken-connection');
+    });
+    // Bad protocol
+    client.on('badprotocol', () => {
+        mainWindow.webContents.send('error-bad-protocol');
     });
 }
 
