@@ -7,10 +7,12 @@ function goMenuScreen() {
 }
 
 function errorDialog(msg) {
-    loader.close();
-    errorServerDialog.onClose(goMenuScreen);
-    errorServerDialog.setContent(_(msg) + '<br>' + _('common.go.menu'));
-    errorServerDialog.open();
+    if (!errorServerDialog.isOpen()) {
+        loader.close();
+        errorServerDialog.onClose(goMenuScreen);
+        errorServerDialog.setContent(_(msg) + '<br>' + _('common.go.menu'));
+        errorServerDialog.open();
+    }
 }
 
 // Events
@@ -24,7 +26,10 @@ ipcRenderer.on('error-connection', (event, message) => {
     errorDialog('error.connection');
 });
 ipcRenderer.on('error-disconnection', (event, message) => {
-    errorDialog('error.disconnection');
+    // Trigger disconnection if no other error is trigger
+    setTimeout(() => {
+        errorDialog('error.disconnection');
+    }, 500);
 });
 ipcRenderer.on('error-broken-connection', (event, message) => {
     errorDialog('error.broken');
