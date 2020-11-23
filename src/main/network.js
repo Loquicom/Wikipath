@@ -1,5 +1,5 @@
 /* --- Imports --- */
-const Client = require('./server/client');
+const Client = require('./wsa/client');
 const constant = require('../constant');
 
 /* --- Variables --- */
