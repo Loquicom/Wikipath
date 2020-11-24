@@ -20,6 +20,12 @@ iphex.encode = function(ip) {
     }
     // Get the 4 number of the ip and transform into hex value
     const hex = ip.split('.').map(entry => parseInt(entry).toString(16));
+    // Format all strings to be 2 char long
+    for (let key in hex) {
+        if (hex[key].length < 2) {
+            hex[key] = '0' + hex[key];
+        }
+    }
     // Return in one string
     return hex.join('').toUpperCase();
 };
