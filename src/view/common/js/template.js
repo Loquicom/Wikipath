@@ -6,21 +6,23 @@ const template = Handlebars.compile(html);
 const regex = /(?<={{_\.)([a-zA-Z.]*)(?=}})/gm;
 const keys = html.match(regex);
 const translations = {};
-for (let key of keys) {
-    const keySplit = key.split('.');
-    if (keySplit.length === 1) {
-        translations[key] = i18n._(key);
-    } else {
-        let data = translations;
-        for(let i = 0; i < keySplit.length; i++) {
-            const k = keySplit[i];
-            if (i === keySplit.length - 1) {
-                data[k] = _(key);
-            } else {
-                if (!data[k]) {
-                    data[k] = {}
+if (keys) {
+    for (let key of keys) {
+        const keySplit = key.split('.');
+        if (keySplit.length === 1) {
+            translations[key] = i18n._(key);
+        } else {
+            let data = translations;
+            for(let i = 0; i < keySplit.length; i++) {
+                const k = keySplit[i];
+                if (i === keySplit.length - 1) {
+                    data[k] = _(key);
+                } else {
+                    if (!data[k]) {
+                        data[k] = {}
+                    }
+                    data = data[k]
                 }
-                data = data[k]
             }
         }
     }
