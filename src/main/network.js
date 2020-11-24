@@ -99,6 +99,11 @@ function setupAction() {
     client.action('player-unready', (data) => {
         mainWindow.webContents.send('player-unready', data);
     });
+    // Game start
+    client.action('play', (data) => {
+        mainWindow.webContents.send('play', data);
+        wikipathEvent.emit('play', data.start.link, data.end.link);
+    });
     // Default action
     client.action('default', (data) => {
         quit();

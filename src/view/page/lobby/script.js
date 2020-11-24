@@ -60,6 +60,11 @@ ipcRenderer.on('player-ready', (event, data) => {
 ipcRenderer.on('player-unready', (event, data) => {
     $($(`#player-${data.id}-ready`).children()[0]).addClass('is-empty');
 });
+ipcRenderer.on('play', (event, data) => {
+    storage.set('start', data.start);
+    storage.set('end', data.end);
+    routerService.redirect('game');
+});
 
 // When DOM is ready
 $(() => {
