@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF-8">
+        <title>Wikipath - Lobby</title>
+        <link href="../../common/css/simple-grid.min.css" rel="stylesheet" />
+        <link href="../../common/css/nes.min.css" rel="stylesheet" />
+        <link href="../../common/css/pressStart2P.css" rel="stylesheet" />
+        <link href="../../common/css/style.css" rel="stylesheet" />
+    </head>
+    <body id="template">
+        <div class="container">
+            <div class="row center">
+                <div class="col-12">
+                    <h2>{{{webpage.title}}}</h2>
+                </div>
+            </div>
+            <div class="row" style="margin-top: 1em;">
+                <div class="col-12">
+                    <p style="text-justify: auto;">{{{webpage.summary}}}</p>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-12 center">
+                    <button type="button" id="close-btn" class="nes-btn is-primary">{{_.common.close}}</button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Load common js -->
+        <script type="text/javascript" src="../../common/js/common.js"></script>
+        <script type="text/javascript" src="../../common/js/errorServer.js"></script>
+        <!-- Load personnal js -->
+        <script type="text/javascript" src="script.js"></script>
+        <!-- Load Template -->
+        <script type="text/javascript" src="../../common/js/template.js"></script>
+    </body>
+</html>

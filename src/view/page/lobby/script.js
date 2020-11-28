@@ -65,6 +65,9 @@ ipcRenderer.on('play', (event, data) => {
     storage.set('end', data.end);
     routerService.redirect('game');
 });
+ipcRenderer.on('server-config', (event, data) => {
+    storage.set('config', data);
+})
 
 // When DOM is ready
 $(() => {
@@ -76,4 +79,5 @@ $(() => {
             ready();
         }
     });
+    ipcRenderer.send('server-config');
 });

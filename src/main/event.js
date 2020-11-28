@@ -1,7 +1,7 @@
 // Import
 const { ipcMain } = require('electron');
+const dialog = require('./service/dialog');
 const iphex = require('../helper/iphex');
-const ipHex = require('../helper/iphex');
 
 // Join event
 ipcMain.on('connection-code', (event, data) => {
@@ -15,7 +15,7 @@ ipcMain.on('connection-code', (event, data) => {
     // If the code is in hex format, decode
     let ip = code;
     if (iphex.isHex(code)) {
-        ip = ipHex.decode(code);
+        ip = iphex.decode(code);
     }
     // Wait the answer to be sure the connection is established
     wikipathEvent.once('server-join', (players) => {
@@ -37,4 +37,22 @@ ipcMain.on('ready', (event) => {
 });
 ipcMain.on('unready', (event) => {
     wikipathEvent.emit('unready');
+});
+
+// Get server config event
+ipcMain.on('server-config', (event) => {
+    event.sender.send('server-config', serverConfig);
+});
+
+// Reset webpage event
+ipcMain.on('reset', (event, start) => {
+    wikipathEvent.emit('reset', start.link);
+});
+
+// Information about a webpage
+ipcMain.on('information', (event, webpage) => {
+    wikipathEvent.emit('information', webpage.link);
+});
+ipcMain.on('close-information', (event) => {
+    wikipathEvent.emit('close-information');
 });
