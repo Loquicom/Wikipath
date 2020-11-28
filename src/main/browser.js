@@ -69,7 +69,15 @@ wikipathEvent.on('information', (url) => {
         informationWindow.on('resize', () => {
             size = getSize(mainWindow);
             view.setBounds({ x: 0, y: 0, width: size.width, height: size.height });
-        })
+        });
+        view.webContents.on('before-input-event', (event, input) => {
+            // Prevent keyboard input
+            event.preventDefault();
+        });
+        view.webContents.on('will-navigate', (event, url) => {
+            // Prevent navigation with a link
+            event.preventDefault();
+        });
     }
     // When informationWindow is close set to null
     informationWindow.on('close', () => {
