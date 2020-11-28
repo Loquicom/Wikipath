@@ -12,7 +12,7 @@
         "connection": "Erreur de communication avec le serveur",
         "disconnection": "D&eacute;connect&eacute; du serveur",
         "broken": "Connexion perdue avec le serveur",
-        "ingame": "Le serveur est un jeu",
+        "ingame": "Le serveur est en jeu",
         "full": "Le serveur est complet",
         "command": "Commande inconnue venant du serveur",
         "unknown": "Erreur inconnue",
