@@ -26,4 +26,8 @@ $(() => {
     }
     // Create dialog
     dialog = dialogService.createDialogWithContent('error', _('menu.error.pseudo'), {type: 'primary', label: _('common.close')}, 'center');
+    // Enter key press
+    $(document).enterKey(() => {
+        join();
+    });
 });

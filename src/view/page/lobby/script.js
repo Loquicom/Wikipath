@@ -89,4 +89,8 @@ $(() => {
     // Set the loader parameters
     loader.setColor(loaderService.COLOR.BLUE);
     loader.setSpeed(loaderService.SPEED.FASTEST);
+    // Enter key press
+    $(document).enterKey(() => {
+        $('.ready-btn')[0].click();
+    });
 });

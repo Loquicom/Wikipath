@@ -26,5 +26,14 @@ function convertToArray(obj) {
 }
 
 // Codes
+$.fn.enterKey = function(fn) {
+    this.each(function() {
+        $(this).on('keypress', function(event) {
+            if (event.key === 'Enter') {
+                fn.call(this);
+            }
+        });
+    });
+}
 i18n.config(path.join(__dirname, '../../../../locales'));
 const _ = i18n._;

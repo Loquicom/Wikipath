@@ -42,4 +42,8 @@ $(() => {
     dialog = dialogService.createDialog('error', {type: 'primary', label: _('common.close')}, 'center');
     loader.setColor(loaderService.COLOR.BLUE);
     loader.setSpeed(loaderService.SPEED.FASTEST);
+    // Enter key press
+    $(document).enterKey(() => {
+        join();
+    });
 })
