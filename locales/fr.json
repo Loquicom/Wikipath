@@ -39,5 +39,10 @@
     "lobby": {
         "player": "Joueurs",
         "ready": "Pr&ecirc;t"
+    },
+    "game": {
+        "from": "De",
+        "to": "&agrave;",
+        "reset": "Reset"
     }
 }

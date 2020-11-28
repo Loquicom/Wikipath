@@ -39,5 +39,10 @@
     "lobby": {
         "player": "Players",
         "ready": "Ready;"
+    },
+    "game": {
+        "from": "From",
+        "to": "to",
+        "reset": "Reset"
     }
 }
