@@ -99,6 +99,10 @@ function setupAction() {
     client.action('player-unready', (data) => {
         mainWindow.webContents.send('player-unready', data);
     });
+    // Game is loading
+    client.action('loading-game', () => {
+        mainWindow.webContents.send('loading-game');
+    });
     // Game start
     client.action('play', (data) => {
         mainWindow.webContents.send('play', data);

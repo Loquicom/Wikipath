@@ -67,11 +67,16 @@ ipcRenderer.on('play', (event, data) => {
 });
 ipcRenderer.on('server-config', (event, data) => {
     storage.set('config', data);
-})
+});
+ipcRenderer.on('loading-game', (event, data) => {
+    loader.open();
+});
 
 // When DOM is ready
 $(() => {
+    // Generate table with all players connected
     $('#lobby-content').html(generateTableContent(players));
+    // Toogle ready
     $('.ready-btn').on('click', function () {
         if ($(this).hasClass('is-primary')) {
             unready();
@@ -79,5 +84,9 @@ $(() => {
             ready();
         }
     });
+    // Get the server config
     ipcRenderer.send('server-config');
+    // Set the loader parameters
+    loader.setColor(loaderService.COLOR.BLUE);
+    loader.setSpeed(loaderService.SPEED.FASTEST);
 });
