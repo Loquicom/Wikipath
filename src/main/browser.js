@@ -58,7 +58,7 @@ wikipathEvent.on('information', (url) => {
     }
     // Create new window to display information
     informationWindow = window.new(path.join(__dirname, '../view/page/information/index.html'), window.defaultValues.width - 10, window.defaultValues.height - 100, mainWindow);
-    //informationWindow.removeMenu();
+    informationWindow.removeMenu();
     if (serverConfig.fullPage) {
         // Create a browser view
         const view = new BrowserView();
