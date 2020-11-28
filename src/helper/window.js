@@ -22,24 +22,32 @@ window.hidden = function (file) {
     return win;
 }
 
-window.new = function (file, width, height) {
+window.new = function (file, width, height, parent) {
     // Default values
     width = width ? width : defaultValues.width;
     height = height ? height : defaultValues.height;
-    // New window
-    const win = new BrowserWindow ({
+    // Options
+    const opts = {
         width: width,
         height: height,
-        //icon: 
+        //icon: ,
+        worldSafeExecuteJavaScript: true, 
+        contextIsolation: true,
         webPreferences: {
             nodeIntegration: true
         }
-    });
+    }
+    // Add parent if have one
+    if (parent) {
+        opts.parent = parent;
+    }
+    // New window
+    const win = new BrowserWindow (opts);
     win.loadFile(file);
     return win;
 }
 
-window.frameless = function (file, parent, width, height) {
+window.frameless = function (file, width, height, parent) {
     // Default values
     width = width ? width : defaultValues.width;
     height = height ? height : defaultValues.height;
@@ -49,6 +57,8 @@ window.frameless = function (file, parent, width, height) {
         height: height,
         frame: false,
         //icon: ,
+        worldSafeExecuteJavaScript: true, 
+        contextIsolation: true,
         webPreferences: {
             nodeIntegration: true
         }
@@ -64,3 +74,4 @@ window.frameless = function (file, parent, width, height) {
 }
 
 module.exports = window;
+module.exports.defaultValues = defaultValues;
