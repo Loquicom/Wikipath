@@ -18,7 +18,7 @@ function join(ip, pseudo) {
     // Connection
     client.connect(() => {
         // Register pseudo
-        client.send('register', {pseudo: pseudo, protocolVersion: constant.PROTOCOL_VERSION});
+        client.send('register', {pseudo: pseudo});
     });
 }
 
