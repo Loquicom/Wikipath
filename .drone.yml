@@ -7,7 +7,7 @@ workspace:
 
 steps:
 - name: build
-  image: electronuserland/builder:wine
+  image: electronuserland/builder:wine-mono
   commands:
   - yarn
   - yarn build
