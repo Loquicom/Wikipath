@@ -6,7 +6,7 @@
   "main": "src/index.js",
   "scripts": {
     "start": "electron-forge start",
-    "build": "electron-builder --linux AppImage deb tar.gz --windows nsis portable zip",
+    "build": "electron-builder --linux deb tar.gz --windows squirrel portable zip",
     "windows": "electron-builder --windows zip",
     "linux": "electron-builder --linux tar.gz"
   },
@@ -20,6 +20,7 @@
     "node": ">=12"
   },
   "dependencies": {
+    "electron-squirrel-startup": "^1.0.0",
     "handlebars": "^4.7.6",
     "html-entities": "^1.3.1",
     "jquery": "^3.5.1",

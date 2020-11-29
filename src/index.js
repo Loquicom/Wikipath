@@ -4,6 +4,13 @@ const events = require('events');
 const window = require('./helper/window');
 const file = require('./helper/file');
 
+/* --- Squirrel --- */
+
+// Handle creating/removing shortcuts on Windows when installing/uninstalling.
+if (require('electron-squirrel-startup')) {
+  app.quit();
+}
+
 /* --- Initialisation --- */
 
 app.allowRendererProcessReuse = true;
