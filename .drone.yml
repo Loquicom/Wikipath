@@ -10,7 +10,7 @@ steps:
   image: electronuserland/builder:wine
   commands:
   - yarn
-  - yarn make
+  - yarn build
 
 - name: release
   image: plugins/github-release
