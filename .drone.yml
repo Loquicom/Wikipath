@@ -3,6 +3,14 @@ type: docker
 name: default
 
 steps:
+- name: name
+  image: node
+  commands:
+  - export PROJECT_VERSION=$(node -p "require('./package.json').version")
+  - echo $PROJECT_VERSION
+  - echo "dist/wikipath_${PROJECT_VERSION}_amd64.deb"
+  - echo "dist/wikipath_$${PROJECT_VERSION}_amd64.deb"
+
 - name: build
   image: electronuserland/builder:wine-mono
   commands:
@@ -18,8 +26,6 @@ steps:
   image: node
   environment:
     GITHUB_TOKEN:
-      from_secret: github_token
-    GH_TOKEN:
       from_secret: github_token
   commands:
   - export PROJECT_VERSION=$(node -p "require('./package.json').version")
