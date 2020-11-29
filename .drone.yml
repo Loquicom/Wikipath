@@ -19,9 +19,11 @@ steps:
   environment:
     GITHUB_TOKEN:
       from_secret: github_token
+    GH_TOKEN:
+      from_secret: github_token
   commands:
   - export PROJECT_VERSION=$(node -p "require('./package.json').version")
-  - yarn github-release upload --owner Loquicom --repo Wikipath --tag $PROJECT_VERSION --release-name $PROJECT_VERSION "dist/wikipath_${PROJECT_VERSION}_amd64.deb" "dist/wikipath-${PROJECT_VERSION}.tar.gz" "wikipath ${PROJECT_VERSION}.exe" "wikipath Setup ${PROJECT_VERSION}.exe" "dist/wikipath-${PROJECT_VERSION}-win.zip" 
+  - yarn github-release upload --owner Loquicom --repo Wikipath --tag $PROJECT_VERSION --release-name $PROJECT_VERSION "dist/wikipath-${PROJECT_VERSION}-x86_64.AppImage" "dist/wikipath_${PROJECT_VERSION}_amd64.deb" "dist/wikipath-${PROJECT_VERSION}.tar.gz" "wikipath ${PROJECT_VERSION}.exe" "wikipath Setup ${PROJECT_VERSION}.exe" "dist/wikipath-${PROJECT_VERSION}-win.zip" 
 
 trigger:
   branch:
