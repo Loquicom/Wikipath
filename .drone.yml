@@ -1,0 +1,33 @@
+kind: pipeline
+type: docker
+name: default
+
+workspace: /opt/drone_ci/workspace/wikipath
+
+steps:
+- name: build
+  image: electronuserland/builder:wine
+  commands:
+  - yarn
+  - yarn make
+
+- name: release
+  image: plugins/github-release
+  commands:
+  - export PROJECT_VERSION=$(node -p "require('./package.json').version")
+  settings:
+    api_key: xxxxxxxx
+    title: $PROJECT_VERSION
+    files:
+      - dist/*
+      - bin/binary.exe
+    checksum:
+      - md5
+      - sha1
+      - sha256
+      - sha512
+      - adler32
+      - crc32
+  when:
+    branch:
+    - release
