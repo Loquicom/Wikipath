@@ -15,22 +15,12 @@ steps:
   - node view.js
 
 - name: release
-  image: plugins/github-release
+  image: node
+  environment:
+    GITHUB_TOKEN:
+      from_secret: github_token
   commands:
   - export PROJECT_VERSION=$(node -p "require('./package.json').version")
-  settings:
-    api_key: xxxxxxxx
-    title: $PROJECT_VERSION
-    files:
-      - dist/*
-      - bin/binary.exe
-    checksum:
-      - md5
-      - sha1
-      - sha256
-      - sha512
-      - adler32
-      - crc32
-  when:
-    branch:
-    - release
+  - echo $GITHUB_TOKEN
+  - echo $PROJECT_VERSION
+  - yarn github-release upload --owner Loquicom --repo Wikipath --tag $PROJECT_VERSION --release-name $PROJECT_VERSION "wikipath-0.0.1-win.zip" "wikipath-0.0.1.tar.gz" "wikipath_0.0.1_amd64.deb" 
