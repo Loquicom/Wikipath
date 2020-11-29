@@ -9,11 +9,6 @@ steps:
   - yarn
   - yarn build
 
-- name: view
-  image: node
-  commands:
-  - node view.js
-
 - name: release
   image: node
   environment:
