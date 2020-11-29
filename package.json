@@ -6,10 +6,9 @@
   "main": "src/index.js",
   "scripts": {
     "start": "electron-forge start",
-    "package": "electron-forge package",
-    "build": "electron-builder --linux deb tar.gz --windows squirrel zip",
-    "publish": "electron-forge publish",
-    "lint": "echo \"No linting configured\""
+    "build": "electron-builder --linux AppImage deb tar.gz --windows nsis portable zip",
+    "windows": "electron-builder --windows zip",
+    "linux": "electron-builder --linux tar.gz"
   },
   "keywords": [],
   "author": {
@@ -21,7 +20,6 @@
     "node": ">=12"
   },
   "dependencies": {
-    "electron-squirrel-startup": "^1.0.0",
     "handlebars": "^4.7.6",
     "html-entities": "^1.3.1",
     "jquery": "^3.5.1",
