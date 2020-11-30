@@ -13,8 +13,13 @@ function getSize(win) {
 }
 
 function finish(history) {
-    console.log('fini');
-    console.log(history);
+    // Close information window
+    if (informationWindow) {
+        informationWindow.close();
+    }
+    // Remove browser view and show loader
+    mainWindow.removeBrowserView(mainWindow.getBrowserView());
+    mainWindow.webContents.send('waiting-players');
 }
 
 // Events

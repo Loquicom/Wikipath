@@ -43,6 +43,7 @@
     "game": {
         "from": "From",
         "to": "to",
-        "reset": "Reset"
+        "reset": "Reset",
+        "wait": "Waiting other players"
     }
 }
