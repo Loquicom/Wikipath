@@ -138,3 +138,7 @@ wikipathEvent.on('ready', () => {
 wikipathEvent.on('unready', () => {
     client.send('unready');
 });
+
+wikipathEvent.on('finish', (history) => {
+    client.send('finish', {history: history});
+});

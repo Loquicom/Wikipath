@@ -12,7 +12,7 @@ function getSize(win) {
     return {width: size[0], height: size[1]};
 }
 
-function finish(history) {
+function finish(historyLink) {
     // Close information window
     if (informationWindow) {
         informationWindow.close();
@@ -20,6 +20,17 @@ function finish(history) {
     // Remove browser view and show loader
     mainWindow.removeBrowserView(mainWindow.getBrowserView());
     mainWindow.webContents.send('waiting-players');
+    // Transform history
+    const history = [];
+    for (let link of historyLink) {
+        const title = decodeURI(link.split('/').pop()).replaceAll('_', ' ');
+        history.push({
+            title: title,
+            link: link
+        });
+    }
+    // Send to server
+    wikipathEvent.emit('finish', history);
 }
 
 // Events
