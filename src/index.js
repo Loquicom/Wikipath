@@ -1,7 +1,7 @@
 const { app, BrowserView } = require('electron');
 const path = require('path');
 const events = require('events');
-const window = require('./helper/window');
+const window = require('./main/service/window');
 const file = require('./helper/file');
 
 /* --- Squirrel --- */

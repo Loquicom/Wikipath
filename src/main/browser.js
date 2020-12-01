@@ -1,7 +1,7 @@
 // Imports
 const { BrowserView } = require('electron');
 const path = require('path');
-const window = require('../helper/window');
+const window = require('./service/window');
 
 // Variables
 let informationWindow;
