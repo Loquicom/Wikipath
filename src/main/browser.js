@@ -1,9 +1,11 @@
 // Imports
 const { BrowserView } = require('electron');
+const Entities = require('html-entities').AllHtmlEntities;
 const path = require('path');
 const window = require('./service/window');
 
 // Variables
+const entite = new Entities();
 let informationWindow;
 
 // Functions
@@ -23,7 +25,7 @@ function finish(historyLink) {
     // Transform history
     const history = [];
     for (let link of historyLink) {
-        const title = decodeURI(link.split('/').pop()).replaceAll('_', ' ');
+        const title = entite.encode(decodeURI(link.split('/').pop()).replaceAll('_', ' '));
         history.push({
             title: title,
             link: link
