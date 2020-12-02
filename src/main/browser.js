@@ -109,3 +109,13 @@ wikipathEvent.on('close-information', () => {
     }
     informationWindow.close();
 });
+
+wikipathEvent.on('stop-browser', () => {
+    if (informationWindow) {
+        informationWindow.close();
+    }
+    const view = mainWindow.getBrowserView();
+    if (view) {
+        mainWindow.removeBrowserView(view);
+    }
+});
