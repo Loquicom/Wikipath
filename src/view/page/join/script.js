@@ -46,4 +46,6 @@ $(() => {
     $(document).enterKey(() => {
         join();
     });
+    // Focus code input
+    $('#code').trigger('focus');
 })
