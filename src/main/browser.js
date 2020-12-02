@@ -45,11 +45,11 @@ wikipathEvent.on('play', (startUrl, endUrl) => {
     view.setBounds({ x: 0, y: 100, width: size.width, height: size.height - 100 });
     // Check if the player find the end page
     view.webContents.on("dom-ready", (event) => {
-        const urls = [event.sender.history[event.sender.history.length - 1]];
+        const urls = [decodeURI(event.sender.history[event.sender.history.length - 1])];
         // Attend toutes les redirections
         setTimeout(() => {
-            urls.push(view.webContents.getURL());
-            if (urls.indexOf(endUrl) !== -1) {
+            urls.push(decodeURI(view.webContents.getURL()));
+            if (urls.indexOf(decodeURI(endUrl)) !== -1) {
                 finish(event.sender.history);
             }
         }, 1000);       
