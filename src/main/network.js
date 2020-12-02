@@ -115,7 +115,7 @@ function setupAction() {
     });
     // Result after the game is over
     client.action('result', (data) => {
-        console.log(data);
+        mainWindow.webContents.send('result', data);
     });
     // Default action
     client.action('default', (data) => {

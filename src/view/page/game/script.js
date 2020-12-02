@@ -17,8 +17,9 @@ function reset() {
 ipcRenderer.on('waiting-players', () => {
     loader.open();
 });
-ipcRenderer.on('finish', () => {
-    // TODO redirect
+ipcRenderer.on('result', (event, result) => {
+    storage.set('result', result);
+    routerService.redirect('result');
 });
 
 // DOM Ready

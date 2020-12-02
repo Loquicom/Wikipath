@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF-8">
+        <title>Wikipath - Result</title>
+        <link href="../../common/css/simple-grid.min.css" rel="stylesheet" />
+        <link href="../../common/css/nes.min.css" rel="stylesheet" />
+        <link href="../../common/css/pressStart2P.css" rel="stylesheet" />
+        <link href="../../common/css/style.css" rel="stylesheet" />
+    </head>
+    <body id="template">
+        <div class="container">
+            <div class="row">
+                <div class="col-12 center">
+                    <h2>Result - {{server.name}}</h2>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-1"></div>
+                <div class="col-10 center">
+                    <div class="nes-table-responsive">
+                        <table class="nes-table is-bordered is-centered" style="width: 99%;">
+                            <thead>
+                                <tr>
+                                    <th>{{_.result.position}}</th>
+                                    <th>{{_.result.pseudo}}</th>
+                                    <th>{{_.result.history}}</th>
+                                </tr>
+                            </thead>
+                            <tbody id="result-content">
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+                <div class="col-1"></div>
+            </div>
+            <div class="row">
+                <div class="col-12 center">
+                    <button type="button" class="nes-btn ready-btn">{{_.result.return}}</button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Load common js -->
+        <script type="text/javascript" src="../../common/js/common.js"></script>
+        <script type="text/javascript" src="../../common/js/errorServer.js"></script>
+        <!-- Load personnal js -->
+        <script type="text/javascript" src="script.js"></script>
+        <!-- Load Template -->
+        <script type="text/javascript" src="../../common/js/template.js"></script>
+    </body>
+</html>
