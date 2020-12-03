@@ -45,5 +45,12 @@
         "to": "&agrave;",
         "reset": "Reset",
         "wait": "En attente des autres joueurs"
+    },
+    "result": {
+        "position": "Position",
+        "pseudo": "Pseudo",
+        "history": "Historique",
+        "return": "Retour au lobby",
+        "view": "Voir"
     }
 }
