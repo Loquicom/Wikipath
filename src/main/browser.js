@@ -1,10 +1,13 @@
 // Imports
 const { BrowserView } = require('electron');
+const Entities = require('html-entities').AllHtmlEntities;
 const path = require('path');
-const window = require('../helper/window');
+const window = require('./service/window');
 
 // Variables
+const entite = new Entities();
 let informationWindow;
+let historyWindow;
 
 // Functions
 function getSize(win) {
@@ -12,9 +15,25 @@ function getSize(win) {
     return {width: size[0], height: size[1]};
 }
 
-function finish(history) {
-    console.log('fini');
-    console.log(history);
+function finish(historyLink) {
+    // Close information window
+    if (informationWindow) {
+        informationWindow.close();
+    }
+    // Remove browser view and show loader
+    mainWindow.removeBrowserView(mainWindow.getBrowserView());
+    mainWindow.webContents.send('waiting-players');
+    // Transform history
+    const history = [];
+    for (let link of historyLink) {
+        const title = entite.encode(decodeURI(link.split('/').pop()).replaceAll('_', ' '));
+        history.push({
+            title: title,
+            link: link
+        });
+    }
+    // Send to server
+    wikipathEvent.emit('finish', history);
 }
 
 // Events
@@ -27,14 +46,18 @@ wikipathEvent.on('play', (startUrl, endUrl) => {
     view.setBounds({ x: 0, y: 100, width: size.width, height: size.height - 100 });
     // Check if the player find the end page
     view.webContents.on("dom-ready", (event) => {
-        const urls = [event.sender.history[event.sender.history.length - 1]];
+        const urls = [decodeURI(event.sender.history[event.sender.history.length - 1])];
         // Attend toutes les redirections
         setTimeout(() => {
-            urls.push(view.webContents.getURL());
-            if (urls.indexOf(endUrl) !== -1) {
+            urls.push(decodeURI(view.webContents.getURL()));
+            if (urls.indexOf(decodeURI(endUrl)) !== -1) {
                 finish(event.sender.history);
             }
         }, 1000);       
+    });
+    // Prevent keyboard input
+    view.webContents.on('before-input-event', (event, input) => {
+        event.preventDefault();
     });
     // Load the start URL
     view.webContents.loadURL(startUrl);
@@ -66,10 +89,6 @@ wikipathEvent.on('information', (url) => {
         let size = getSize(mainWindow);
         view.setBounds({ x: 0, y: 0, width: size.width, height: size.height });
         view.webContents.loadURL(url);
-        informationWindow.on('resize', () => {
-            size = getSize(mainWindow);
-            view.setBounds({ x: 0, y: 0, width: size.width, height: size.height });
-        });
         view.webContents.on('before-input-event', (event, input) => {
             // Prevent keyboard input
             event.preventDefault();
@@ -78,11 +97,45 @@ wikipathEvent.on('information', (url) => {
             // Prevent navigation with a link
             event.preventDefault();
         });
+        informationWindow.on('resize', () => {
+            size = getSize(mainWindow);
+            view.setBounds({ x: 0, y: 0, width: size.width, height: size.height });
+        });
     }
-    // When informationWindow is close set to null
+    // When information window is close set to null
     informationWindow.on('close', () => {
         informationWindow = null;
     });
+});
+
+wikipathEvent.on('view-history', (link) => {
+    // Load Browser view on first page
+    historyWindow = window.new(path.join(__dirname, '../view/page/history/index.html'), window.defaultValues.width - 10, window.defaultValues.height - 100, mainWindow);
+    historyWindow.removeMenu();
+    const view = new BrowserView();
+    historyWindow.setBrowserView(view);
+    let size = getSize(historyWindow);
+    view.setBounds({ x: 0, y: 150, width: size.width, height: size.height - 150 });
+    view.webContents.loadURL(link);
+    view.webContents.on('before-input-event', (event, input) => {
+        // Prevent keyboard input
+        event.preventDefault();
+    });
+    historyWindow.on('resize', () => {
+        size = getSize(mainWindow);
+        view.setBounds({ x: 0, y: 150, width: size.width, height: size.height - 150 });
+    });
+    // When history window is close set to null
+    historyWindow.on('close', () => {
+        historyWindow = null;
+    });
+});
+
+wikipathEvent.on('change-history', (link) => {
+    if (!historyWindow) {
+        return;
+    }
+    historyWindow.getBrowserView().webContents.loadURL(link);
 });
 
 wikipathEvent.on('close-information', () => {
@@ -90,4 +143,17 @@ wikipathEvent.on('close-information', () => {
         return;
     }
     informationWindow.close();
+});
+
+wikipathEvent.on('stop-browser', () => {
+    if (informationWindow) {
+        informationWindow.close();
+    }
+    if (historyWindow) {
+        historyWindow.close();
+    }
+    const view = mainWindow.getBrowserView();
+    if (view) {
+        mainWindow.removeBrowserView(view);
+    }
 });

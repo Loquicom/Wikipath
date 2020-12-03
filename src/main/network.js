@@ -31,6 +31,7 @@ function quit() {
 function setupEvent() {
     // Server stop
     client.on('serverstop', () => {
+        wikipathEvent.emit('stop-browser');
         mainWindow.webContents.send('server-stop'); 
     });
     // Server not found
@@ -39,18 +40,22 @@ function setupEvent() {
     });
     // Connection error between server and client
     client.on('error', (err) => {
+        wikipathEvent.emit('stop-browser');
         mainWindow.webContents.send('error-connection'); 
     });
     // Disconnected by the server
     client.on('disconnection', () => {
+        wikipathEvent.emit('stop-browser');
         mainWindow.webContents.send('error-disconnection');
     });
     // Broken connection
     client.on('broken', () => {
+        wikipathEvent.emit('stop-browser');
         mainWindow.webContents.send('error-broken-connection');
     });
     // Bad protocol
     client.on('badprotocol', () => {
+        wikipathEvent.emit('stop-browser');
         mainWindow.webContents.send('error-bad-protocol');
     });
 }
@@ -108,6 +113,15 @@ function setupAction() {
         mainWindow.webContents.send('play', data);
         wikipathEvent.emit('play', data.start.link, data.end.link);
     });
+    // Result after the game is over
+    client.action('result', (data) => {
+        wikipathEvent.emit('stop-browser');
+        mainWindow.webContents.send('result', data);
+    });
+    // Get players info
+    client.action('players-info', (data) => {
+        mainWindow.webContents.send('players-info', data.players);
+    });
     // Default action
     client.action('default', (data) => {
         quit();
@@ -138,3 +152,11 @@ wikipathEvent.on('ready', () => {
 wikipathEvent.on('unready', () => {
     client.send('unready');
 });
+
+wikipathEvent.on('finish', (history) => {
+    client.send('finish', {history: history});
+});
+
+wikipathEvent.on('get-players-info', () => {
+    client.send('players-info');
+})

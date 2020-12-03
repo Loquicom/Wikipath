@@ -2,51 +2,42 @@
 <html>
     <head>
         <meta charset="UTF-8">
-        <title>Wikipath - Lobby</title>
+        <title>Wikipath - Result</title>
         <link href="../../common/css/simple-grid.min.css" rel="stylesheet" />
         <link href="../../common/css/nes.min.css" rel="stylesheet" />
         <link href="../../common/css/pressStart2P.css" rel="stylesheet" />
         <link href="../../common/css/style.css" rel="stylesheet" />
-        <link href="style.css" rel="stylesheet" />
     </head>
     <body id="template">
         <div class="container">
             <div class="row">
                 <div class="col-12 center">
-                    <h2>Lobby - {{server.name}}</h2>
+                    <h2>Result - {{server.name}}</h2>
                 </div>
             </div>
             <div class="row">
                 <div class="col-12 center">
-                    <button type="button" class="nes-btn ready-btn">{{_.lobby.ready}}</button>
-                </div>
-            </div>
-            <div class="row">
-                <div class="col-1"></div>
-                <div class="col-10 center">
                     <div class="nes-table-responsive">
                         <table class="nes-table is-bordered is-centered" style="width: 99%;">
                             <thead>
                                 <tr>
-                                    <th>{{_.lobby.player}}</th>
-                                    <th>{{_.lobby.ready}}</th>
+                                    <th style="width: 25%;">{{_.result.position}}</th>
+                                    <th style="width: 50%;">{{_.result.pseudo}}</th>
+                                    <th style="width: 25%;">{{_.result.history}}</th>
                                 </tr>
                             </thead>
-                            <tbody id="lobby-content">
+                            <tbody id="result-content">
                             </tbody>
                         </table>
                     </div>
                 </div>
-                <div class="col-1"></div>
             </div>
             <div class="row">
                 <div class="col-12 center">
-                    <button type="button" class="nes-btn ready-btn">{{_.lobby.ready}}</button>
+                    <button type="button" class="nes-btn is-primary" onclick="backToLobby()">{{_.result.return}}</button>
                 </div>
             </div>
         </div>
-        <!-- Return button -->
-        <button type="button" class="nes-btn is-error quit-btn" onclick="quit()"><-</button>
 
         <!-- Load common js -->
         <script type="text/javascript" src="../../common/js/common.js"></script>

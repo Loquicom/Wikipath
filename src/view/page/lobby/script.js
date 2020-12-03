@@ -1,7 +1,7 @@
 // Variables
 const players = storage.get('players');
 const self = storage.get('self');
-scope.lobby = {name: storage.get('server-name')};
+scope.server = {name: storage.get('server-name')};
 
 // Functions
 function quit() {

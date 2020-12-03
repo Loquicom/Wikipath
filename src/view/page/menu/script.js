@@ -30,4 +30,6 @@ $(() => {
     $(document).enterKey(() => {
         join();
     });
+    // Focus pseudo input
+    $('#pseudo').trigger('focus');
 });

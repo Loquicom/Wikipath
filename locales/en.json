@@ -43,6 +43,19 @@
     "game": {
         "from": "From",
         "to": "to",
-        "reset": "Reset"
+        "reset": "Reset",
+        "wait": "Waiting other players"
+    },
+    "result": {
+        "position": "Position",
+        "pseudo": "Pseudo",
+        "history": "History",
+        "return": "Back to lobby",
+        "view": "View"
+    },
+    "history": {
+        "history": "History of",
+        "previous": "<-",
+        "next": "->"
     }
 }

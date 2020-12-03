@@ -27,6 +27,7 @@ class Loader {
     #modif = 1
     #interval
     #open = false;
+    #content;
 
     constructor(color = BLACK, speed = NORMAL, name = 'loader') {
         this.#color = color;
@@ -53,6 +54,14 @@ class Loader {
         this.#speed = speed;
     }
 
+    setContent(content) {
+        this.#content = content;
+    }
+
+    removeContent() {
+        this.#content = null;
+    }
+
     open() {
         this.#open = true;
         this.#dialog.open();
@@ -63,9 +72,15 @@ class Loader {
             } else if (this.#progress < 1) {
                 this.#modif = 1;
             }
+            // Generate dialog content
+            let content = '';
+            if (this.#content) {
+                content += `<div class="center">${this.#content}</div><br/>`;
+            }
+            content += `<progress class="nes-progress ${this.#color}" value="${this.#progress}" max="100" style="min-width: 400px"></progress>`;
             // Update progression and loader bar
             this.#progress += this.#modif;
-            this.#dialog.setContent(`<progress class="nes-progress ${this.#color}" value="${this.#progress}" max="100" style="min-width: 400px"></progress>`)
+            this.#dialog.setContent(content);
         }, this.#speed);
     }
 

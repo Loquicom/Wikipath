@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF-8">
+        <title>Wikipath - History</title>
+        <link href="../../common/css/simple-grid.min.css" rel="stylesheet" />
+        <link href="../../common/css/nes.min.css" rel="stylesheet" />
+        <link href="../../common/css/pressStart2P.css" rel="stylesheet" />
+        <link href="../../common/css/style.css" rel="stylesheet" />
+    </head>
+    <body id="template">
+        <div class="container center">
+            <div class="row">
+                <div class="col-12">
+                    <h3><i>{{_.history.history}} {{player.pseudo}}</i></h3>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-3">
+                    <button type="button" id="prev-btn" class="nes-btn is-primary" onclick="previous()">{{_.history.previous}}</button>
+                </div>
+                <div class="col-6" style="margin-top: 1.5em;">
+                    <span id="page-title">{{{webpage.title}}}</span>
+                </div>
+                <div class="col-3">
+                    <button type="button" id="next-btn" class="nes-btn is-primary" onclick="next()">{{_.history.next}}</button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Load common js -->
+        <script type="text/javascript" src="../../common/js/common.js"></script>
+        <script type="text/javascript" src="../../common/js/errorServer.js"></script>
+        <!-- Load personnal js -->
+        <script type="text/javascript" src="script.js"></script>
+        <!-- Load Template -->
+        <script type="text/javascript" src="../../common/js/template.js"></script>
+    </body>
+</html>

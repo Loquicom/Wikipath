@@ -1,5 +1,5 @@
 const {dialog, ipcMain} = require('electron');
-const window = require('../../helper/window');
+const window = require('./window');
 const dlg = {};
 
 dlg.messagePromise = function(title, content, type = '', buttons = ['Ok'], defaultButton = 0, attach = true) {

@@ -1,7 +1,7 @@
 const { app, BrowserView } = require('electron');
 const path = require('path');
 const events = require('events');
-const window = require('./helper/window');
+const window = require('./main/service/window');
 const file = require('./helper/file');
 
 /* --- Squirrel --- */
@@ -79,7 +79,13 @@ app.on('activate', () => {
 });
 // Application stop
 app.on('quit', () => {
+  // Alert
   wikipathEvent.emit('stop');
+  // Remove BrowserView if is set
+  const view = mainWindow.getBrowserView();
+  if (view) {
+    mainWindow.removeBrowserView(view);
+  }
   console.log('Bye');
   // TODO
 });
