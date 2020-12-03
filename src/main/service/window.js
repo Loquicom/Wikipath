@@ -43,7 +43,9 @@ window.new = function (file, width, height, parent) {
     }
     // New window
     const win = new BrowserWindow (opts);
-    win.loadFile(file);
+    if (file) {
+        win.loadFile(file);
+    }
     return win;
 }
 
@@ -69,7 +71,9 @@ window.frameless = function (file, width, height, parent) {
     }
     // New window
     const win = new BrowserWindow (opts);
-    win.loadFile(file);
+    if (file) {
+        win.loadFile(file);
+    }
     return win;
 }
 

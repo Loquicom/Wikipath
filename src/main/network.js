@@ -115,7 +115,12 @@ function setupAction() {
     });
     // Result after the game is over
     client.action('result', (data) => {
+        wikipathEvent.emit('stop-browser');
         mainWindow.webContents.send('result', data);
+    });
+    // Get players info
+    client.action('players-info', (data) => {
+        mainWindow.webContents.send('players-info', data.players);
     });
     // Default action
     client.action('default', (data) => {
@@ -151,3 +156,7 @@ wikipathEvent.on('unready', () => {
 wikipathEvent.on('finish', (history) => {
     client.send('finish', {history: history});
 });
+
+wikipathEvent.on('get-players-info', () => {
+    client.send('players-info');
+})

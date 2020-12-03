@@ -56,3 +56,16 @@ ipcMain.on('information', (event, webpage) => {
 ipcMain.on('close-information', (event) => {
     wikipathEvent.emit('close-information');
 });
+
+// View player history
+ipcMain.on('view-history', (event, link) => {
+    wikipathEvent.emit('view-history', link);
+});
+ipcMain.on('change-history', (event, link) => {
+    wikipathEvent.emit('change-history', link);
+});
+
+// Get players info
+ipcMain.on('get-players-info', (event) => {
+    wikipathEvent.emit('get-players-info');
+});

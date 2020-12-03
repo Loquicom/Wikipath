@@ -52,5 +52,10 @@
         "history": "History",
         "return": "Back to lobby",
         "view": "View"
+    },
+    "history": {
+        "history": "History of",
+        "previous": "<-",
+        "next": "->"
     }
 }
