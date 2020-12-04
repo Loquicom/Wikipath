@@ -6,10 +6,9 @@
   "main": "src/index.js",
   "scripts": {
     "start": "electron-forge start",
-    "build": "electron-builder --windows portable",
+    "build": "electron-builder --linux deb tar.gz --windows squirrel portable zip",
     "windows": "electron-builder --windows zip",
-    "linux": "electron-builder --linux tar.gz",
-    "view": "node view.js"
+    "linux": "electron-builder --linux tar.gz"
   },
   "keywords": [],
   "author": {
