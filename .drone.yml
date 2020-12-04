@@ -17,7 +17,9 @@ steps:
   commands:
   - export PROJECT_VERSION=$(node -p "require('./package.json').version")
   - export IS_PRERELEASE=$(node -p "require('./package.json').version.split('.')[0] < 1")
-  - yarn github-release upload --owner Loquicom --repo Wikipath --prerelease $IS_PRERELEASE --tag $PROJECT_VERSION --release-name $PROJECT_VERSION "dist/wikipath_$${PROJECT_VERSION}_amd64.deb" "dist/wikipath-$${PROJECT_VERSION}.tar.gz" "dist/wikipath $${PROJECT_VERSION}.exe" "dist/squirrel-windows/wikipath Setup $${PROJECT_VERSION}.exe" "dist/wikipath-$${PROJECT_VERSION}-win.zip" 
+  - export PROJECT_NAME=$(node -p "require('./package.json').name")
+  - export PROJECT_PRODUCT_NAME=$(node -p "require('./package.json').productName")
+  - yarn github-release upload --owner Loquicom --repo Wikipath --prerelease $IS_PRERELEASE --tag $PROJECT_VERSION --release-name $PROJECT_VERSION "dist/$${PROJECT_NAME}_$${PROJECT_VERSION}_amd64.deb" "dist/$${PROJECT_NAME}-$${PROJECT_VERSION}.tar.gz" "dist/$${PROJECT_PRODUCT_NAME} $${PROJECT_VERSION}.exe" "dist/squirrel-windows/$${PROJECT_PRODUCT_NAME} Setup $${PROJECT_VERSION}.exe" "dist/$${PROJECT_PRODUCT_NAME}-$${PROJECT_VERSION}-win.zip" 
 
 trigger:
   branch:
