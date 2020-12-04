@@ -6,6 +6,7 @@ const window = require('./service/window');
 
 // Variables
 const entite = new Entities();
+let checkInterval;
 let informationWindow;
 let historyWindow;
 
@@ -15,7 +16,15 @@ function getSize(win) {
     return {width: size[0], height: size[1]};
 }
 
+function checkUrl(urls, endUrl, history) {
+    if (urls.indexOf(decodeURI(endUrl)) !== -1) {
+        finish(history);
+    }
+}
+
 function finish(historyLink) {
+    // Clear interval
+    clearInterval(checkInterval);
     // Close information window
     if (informationWindow) {
         informationWindow.close();
@@ -26,7 +35,12 @@ function finish(historyLink) {
     // Transform history
     const history = [];
     for (let link of historyLink) {
-        const title = entite.encode(decodeURI(link.split('/').pop()).replaceAll('_', ' '));
+        const splitLink = link.split('/');
+        let title = splitLink.pop();
+        if (!title) {
+            title = splitLink.pop();
+        }
+        title = entite.encode(decodeURI(title).replaceAll('_', ' '));
         history.push({
             title: title,
             link: link
@@ -50,11 +64,15 @@ wikipathEvent.on('play', (startUrl, endUrl) => {
         // Attend toutes les redirections
         setTimeout(() => {
             urls.push(decodeURI(view.webContents.getURL()));
-            if (urls.indexOf(decodeURI(endUrl)) !== -1) {
-                finish(event.sender.history);
-            }
+            checkUrl(urls, endUrl, event.sender.history);
         }, 1000);       
     });
+    view.webContents.on('will-navigate', (event, url) => {
+        checkUrl([decodeURI(url)], endUrl, view.webContents.history);
+    });
+    checkInterval = setInterval(() => {
+        checkUrl([decodeURI(view.webContents.getURL())], endUrl, view.webContents.history);
+    }, 2500);
     // Prevent keyboard input
     view.webContents.on('before-input-event', (event, input) => {
         event.preventDefault();
@@ -121,6 +139,10 @@ wikipathEvent.on('view-history', (link) => {
         // Prevent keyboard input
         event.preventDefault();
     });
+    view.webContents.on('will-navigate', (event, url) => {
+        // Prevent navigation with a link
+        event.preventDefault();
+    });
     historyWindow.on('resize', () => {
         size = getSize(mainWindow);
         view.setBounds({ x: 0, y: 150, width: size.width, height: size.height - 150 });
@@ -146,6 +168,7 @@ wikipathEvent.on('close-information', () => {
 });
 
 wikipathEvent.on('stop-browser', () => {
+    clearInterval(checkInterval);
     if (informationWindow) {
         informationWindow.close();
     }
