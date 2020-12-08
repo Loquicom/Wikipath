@@ -6,6 +6,7 @@
   "main": "src/index.js",
   "scripts": {
     "start": "electron-forge start",
+    "dev": "electron-forge start -- --dev",
     "build": "electron-builder --linux deb tar.gz --windows squirrel portable zip",
     "windows": "electron-builder --windows zip",
     "linux": "electron-builder --linux tar.gz"
