@@ -48,4 +48,8 @@ $(() => {
     });
     // Focus code input
     $('#code').trigger('focus');
+    // If server addr is in memory
+    if (storage.exist('server-addr')) {
+        $('#code').val(storage.get('server-addr'));
+    }
 })

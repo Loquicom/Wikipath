@@ -28,7 +28,8 @@ function main() {
   // Load all files for the main process
   loadMainProcessFiles();
   // Create the main window
-  mainWindow = window.new(path.join(__dirname, 'view/page/menu/index.html'));
+  const page = devMode ? 'dev.html' : 'index.html';
+  mainWindow = window.new(path.join(__dirname, 'view/page/', page));
   // In dev mode open the dev tools
   if (devMode) {
     mainWindow.webContents.openDevTools();
