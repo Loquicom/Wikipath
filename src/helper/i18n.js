@@ -13,7 +13,7 @@ let options = {
 let directory;
 let filepath;
 let currentLocale;
-let translations;
+let translations = {};
 
 // Functions
 function option(opts) {
@@ -78,6 +78,11 @@ function translate(key, params = {}) {
 }
 
 function addTranslation(key) {
+    // Check if filepath is not null
+    if (!filepath) {
+        return;
+    }
+    // Add the new translation
     const keys = key.split('.');
     let data = translations;
     for (let i = 0; i < keys.length; i++) {
