@@ -65,6 +65,7 @@ wikipathEvent.on('play', (startUrl, endUrl) => {
         setTimeout(() => {
             urls.push(decodeURIComponent(view.webContents.getURL()));
             checkUrl(urls, endUrl, event.sender.history);
+            finish(event.sender.history);
         }, 1000);       
     });
     view.webContents.on('will-navigate', (event, url) => {

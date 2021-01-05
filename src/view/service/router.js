@@ -1,6 +1,7 @@
 // Imports
 const $ = require('jquery');
 const path = require('path');
+const { ipcRenderer } = require('electron');
 const file = require('../../helper/file');
 const template = require('./template');
 const storage = require('./storage');
@@ -62,10 +63,11 @@ class RouterService {
             html += '<script>\n' + script + '\n</script>';
         }
         html = template.generate(html, scope);
-        // Clear the scope
+        // Clear the scope and ipcRenderer events
         for (const key in scope) {
             delete scope[key];
         }
+        ipcRenderer.removeAllListeners();
         // Show html
         loaderService.getLoader().close();
         $('#router').html(html);

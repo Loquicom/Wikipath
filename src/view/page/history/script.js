@@ -29,7 +29,10 @@ function next() {
 }
 
 function disabledBtn(numPage, maxPage) {
-    if (numPage <= 0) {
+    if (maxPage == 0) {
+        $('#prev-btn').addClass('is-disabled');
+        $('#next-btn').addClass('is-disabled');
+    } else if (numPage <= 0) {
         $('#prev-btn').addClass('is-disabled');
         $('#next-btn').removeClass('is-disabled');
     } else if (numPage >= maxPage) {
