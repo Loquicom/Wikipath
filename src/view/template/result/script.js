@@ -1,7 +1,6 @@
 // Variables
-const result = storage.get('result');
-scope.server = {name: storage.get('server-name')};
-const playersHistory = {};
+scope.result = storage.get('result');
+scope.playersHistory = {};
 
 // Functions
 function generateResult(result, history = null) {
@@ -23,7 +22,7 @@ function generateResult(result, history = null) {
 }
 
 function viewHistory(btn) {
-    const playerHistory = playersHistory[$(btn).attr('data-pos')];
+    const playerHistory = scope.playersHistory[$(btn).attr('data-pos')];
     storage.set('playerHistory', playerHistory);
     ipcRenderer.send('view-history', playerHistory.history[0].link);
 }
@@ -36,10 +35,11 @@ function backToLobby() {
 ipcRenderer.on('players-info', (event, players) => {
     storage.set('players', players);
     storage.remove('result');
-    routerService.redirect('lobby');
+    scope.server = {name: storage.get('server-name')};
+    routerService.redirect('lobby', scope);
 });
 
 // DOM Ready
 $(() => {
-    $('#result-content').html(generateResult(result, playersHistory));
+    $('#result-content').html(generateResult(scope.result, scope.playersHistory));
 });

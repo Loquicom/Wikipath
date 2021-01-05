@@ -1,10 +1,17 @@
 class Storage {
 
     set(key, value) {
-        let datatype = 'string';
-        if (typeof value === 'object') {
-            value = JSON.stringify(value);
-            datatype = 'object';
+        let datatype;
+        switch (typeof value) {
+            case 'object':
+                value = JSON.stringify(value);
+                datatype = 'object';
+                break;
+            case 'boolean':
+                datatype = 'boolean';
+                break;
+            default:
+                datatype = 'string';
         }
         localStorage.setItem(key, value);
         localStorage.setItem('#' + key + '-datatype', datatype);
@@ -20,8 +27,13 @@ class Storage {
             return false;
         }
         const datatype = localStorage.getItem('#' + key + '-datatype');
-        if (datatype === 'object') {
-            value = JSON.parse(value);
+        switch (datatype) {
+            case 'object':
+                value = JSON.parse(value);
+                break;
+            case 'boolean':
+                value = (value === 'true') ? true : false;
+                break;
         }
         return value;
     }

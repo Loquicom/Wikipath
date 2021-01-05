@@ -1,6 +1,3 @@
-// Variable
-let dialog = null;
-
 // Functions
 function host() {
 
@@ -15,7 +12,7 @@ function join() {
     }
     storage.set('pseudo', pseudo);
     // Change to join screen
-    routerService.redirect('join');
+    routerService.redirect('join', scope);
 }
 
 // Document is ready

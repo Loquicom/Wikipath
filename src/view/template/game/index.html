@@ -1,0 +1,14 @@
+<div class="center">
+    <div class="row">
+        {{_.game.from}} {{{url.start}}}
+    </div>
+    <div class="row">
+        {{_.game.to}}
+    </div>
+    <div class="row">
+        {{#if config.destinationInfo}}<a id="destination-info" href="#">{{/if}} {{{url.end}}} {{#if config.destinationInfo}}</a>{{/if}}
+    </div>
+</div>
+
+<!-- Return button -->
+<button type="button" class="nes-btn is-primary reset-btn" onclick="reset()">{{_.game.reset}}</button>

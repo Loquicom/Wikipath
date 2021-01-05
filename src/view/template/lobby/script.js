@@ -1,16 +1,15 @@
 // Variables
-const players = storage.get('players');
-const self = storage.get('self');
-scope.server = {name: storage.get('server-name')};
+scope.players = storage.get('players');
+scope.self = storage.get('self');
 
 // Functions
 function quit() {
     ipcRenderer.send('quit-game');
-    routerService.redirect('menu');
+    routerService.redirect('menu', scope);
 }
 
 function ready() {
-    $($(`#player-${self.id}-ready`).children()[0]).removeClass('is-empty');
+    $($(`#player-${scope.self.id}-ready`).children()[0]).removeClass('is-empty');
     $('.ready-btn').each((index, elt) => {
         $(elt).addClass('is-primary');
     });
@@ -18,7 +17,7 @@ function ready() {
 }
 
 function unready() {
-    $($(`#player-${self.id}-ready`).children()[0]).addClass('is-empty');
+    $($(`#player-${scope.self.id}-ready`).children()[0]).addClass('is-empty');
     $('.ready-btn').each((index, elt) => {
         $(elt).removeClass('is-primary');
     });
@@ -45,13 +44,13 @@ function generateTableContent(players) {
 
 // Events
 ipcRenderer.on('new-player', (event, data) => {
-    players[data.id] = data;
-    storage.set('players', players);
+    scope.players[data.id] = data;
+    storage.set('players', scope.players);
     $('#lobby-content').append(generateRow(data));
 });
 ipcRenderer.on('player-quit', (event, data) => {
-    delete players[data.id];
-    storage.set('players', players);
+    delete scope.players[data.id];
+    storage.set('players', scope.players);
     $(`#player-${data.id}`).remove();
 });
 ipcRenderer.on('player-ready', (event, data) => {
@@ -63,7 +62,13 @@ ipcRenderer.on('player-unready', (event, data) => {
 ipcRenderer.on('play', (event, data) => {
     storage.set('start', data.start);
     storage.set('end', data.end);
-    routerService.redirect('game');
+    // Set the scope
+    scope.config = storage.get('config');
+    scope.url = {
+        start: data.start.title,
+        end: data.end.title.replaceAll('<i>', '').replaceAll('</i>', '')
+    };
+    routerService.redirect('game', scope);
 });
 ipcRenderer.on('server-config', (event, data) => {
     storage.set('config', data);
@@ -75,7 +80,7 @@ ipcRenderer.on('loading-game', (event, data) => {
 // When DOM is ready
 $(() => {
     // Generate table with all players connected
-    $('#lobby-content').html(generateTableContent(players));
+    $('#lobby-content').html(generateTableContent(scope.players));
     // Toogle ready
     $('.ready-btn').on('click', function () {
         if ($(this).hasClass('is-primary')) {

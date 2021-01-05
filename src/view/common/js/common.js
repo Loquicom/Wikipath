@@ -2,15 +2,26 @@
 const $ = require('jquery');
 const { ipcRenderer } = require('electron');
 const path = require('path');
-const Handlebars = require('handlebars');
 const Entities = require('html-entities').Html5Entities;
-const i18n = require('../../../helper/i18n');
-const storage = require('../../service/storage');
-const routerService = require('../../service/router');
-const dialogService = require('../../service/dialog');
-const loaderService = require('../../service/loader');
+const fs = require('fs');
+
+// Imports services
+let prefix = '../';
+let servicePath = path.join(__dirname, prefix, 'service');
+while(!fs.existsSync(servicePath)) {
+    prefix += '../'
+    servicePath = path.join(__dirname, prefix, 'service');
+}
+const storage = require(path.join(servicePath, 'storage'));
+const template = require(path.join(servicePath, 'template'));
+const routerService = require(path.join(servicePath, 'router'));
+const dialogService = require(path.join(servicePath, 'dialog'));
+const loaderService = require(path.join(servicePath, 'loader'));
+
+// Instanciate
 const entities = new Entities();
 const loader = loaderService.getLoader();
+let dialog;
 
 // Variables
 const scope = {};
@@ -42,7 +53,7 @@ function getURLParameter(key) {
     return get[key];
 }
 
-// Override
+// Override & Functions
 Array.prototype.removeItem = function(item) {
     const index = this.indexOf(item);
     if (index !== -1) {
@@ -61,6 +72,4 @@ $.fn.enterKey = function(fn) {
     });
 }
 
-// Codes
-i18n.config(path.join(__dirname, '../../../../locales'));
-const _ = i18n._;
+const _ = template.translate;

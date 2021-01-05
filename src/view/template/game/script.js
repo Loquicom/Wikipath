@@ -1,16 +1,10 @@
 // Variables
-const start = storage.get('start');
-const end = storage.get('end');
-const config = storage.get('config');
-scope.config = config;
-scope.url = {
-    start: start.title,
-    end: end.title.replaceAll('<i>', '').replaceAll('</i>', '')
-};
+scope.start = storage.get('start');
+scope.end = storage.get('end');
 
 // Functions
 function reset() {
-    ipcRenderer.send('reset', start);
+    ipcRenderer.send('reset', scope.start);
 }
 
 // Event
@@ -19,13 +13,14 @@ ipcRenderer.on('waiting-players', () => {
 });
 ipcRenderer.on('result', (event, result) => {
     storage.set('result', result);
-    routerService.redirect('result');
+    scope.server = {name: storage.get('server-name')};
+    routerService.redirect('result', scope);
 });
 
 // DOM Ready
 $(() => {
     $('#destination-info').on('click', () => {
-        ipcRenderer.send('information', end);
+        ipcRenderer.send('information', scope.end);
     });
     loader.setContent(_('game.wait'));
     loader.setColor(loaderService.COLOR.CHECKERBOARD);

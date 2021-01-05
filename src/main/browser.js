@@ -17,7 +17,7 @@ function getSize(win) {
 }
 
 function checkUrl(urls, endUrl, history) {
-    if (urls.indexOf(decodeURI(endUrl)) !== -1) {
+    if (urls.indexOf(decodeURIComponent(endUrl)) !== -1) {
         finish(history);
     }
 }
@@ -40,7 +40,7 @@ function finish(historyLink) {
         if (!title) {
             title = splitLink.pop();
         }
-        title = entite.encode(decodeURI(title).replaceAll('_', ' '));
+        title = entite.encode(decodeURIComponent(title).replaceAll('_', ' '));
         history.push({
             title: title,
             link: link
@@ -60,18 +60,18 @@ wikipathEvent.on('play', (startUrl, endUrl) => {
     view.setBounds({ x: 0, y: 100, width: size.width, height: size.height - 100 });
     // Check if the player find the end page
     view.webContents.on("dom-ready", (event) => {
-        const urls = [decodeURI(event.sender.history[event.sender.history.length - 1])];
+        const urls = [decodeURIComponent(event.sender.history[event.sender.history.length - 1])];
         // Attend toutes les redirections
         setTimeout(() => {
-            urls.push(decodeURI(view.webContents.getURL()));
+            urls.push(decodeURIComponent(view.webContents.getURL()));
             checkUrl(urls, endUrl, event.sender.history);
         }, 1000);       
     });
     view.webContents.on('will-navigate', (event, url) => {
-        checkUrl([decodeURI(url)], endUrl, view.webContents.history);
+        checkUrl([decodeURIComponent(url)], endUrl, view.webContents.history);
     });
     checkInterval = setInterval(() => {
-        checkUrl([decodeURI(view.webContents.getURL())], endUrl, view.webContents.history);
+        checkUrl([decodeURIComponent(view.webContents.getURL())], endUrl, view.webContents.history);
     }, 2500);
     // Prevent keyboard input
     view.webContents.on('before-input-event', (event, input) => {

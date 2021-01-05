@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF-8">
+        <title>Wikipath</title>
+        <!-- Load CSS -->
+        <link href="../common/css/simple-grid.min.css" rel="stylesheet" />
+        <link href="../common/css/nes.min.css" rel="stylesheet" />
+        <link href="../common/css/pressStart2P.css" rel="stylesheet" />
+        <link href="../common/css/style.css" rel="stylesheet" />
+    </head>
+    <body>
+        
+        <div class="container">
+            <div id="router"></div>
+        </div>
+
+        <!-- Load js -->
+        <script type="text/javascript" src="../common/js/common.js"></script>
+        <script type="text/javascript">
+            let page = 'menu';
+            if (storage.get('dev')) {
+                page = storage.get('page') ? storage.get('page') : page;
+            }
+            routerService.redirect(page);
+        </script>
+    </body>
+</html>
