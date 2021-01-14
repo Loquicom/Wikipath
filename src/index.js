@@ -3,7 +3,7 @@ const path = require('path');
 const events = require('events');
 const window = require('./main/service/window');
 const file = require('./helper/file');
-const i18n = require('./helper/i18n');
+const i18nFactory = require('./helper/i18n');
 
 /* --- Squirrel --- */
 
@@ -18,13 +18,12 @@ app.allowRendererProcessReuse = true;
 global.wikipathEvent = new events.EventEmitter();
 global.mainWindow = null;
 global.devMode = process.argv.length > 2 && process.argv[2] === '--dev';
+global.i18n = i18nFactory.create(path.join(__dirname, '../locales'));
 global._ = i18n._;
 
 /* --- Functions --- */
 
 function main() {
-  // Load translation files
-  i18n.config(path.join(__dirname, '../locales'));
   // Load all files for the main process
   loadMainProcessFiles();
   // Create the main window

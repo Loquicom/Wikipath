@@ -1,12 +1,22 @@
 // Imports
 const $ = require('jquery');
 const Handlebars = require('handlebars');
-const i18n = require('../../helper/i18n');
+const i18nFactory = require('../../helper/i18n');
+const storage = require('./storage');
+
+// Variables
+const locale = storage.get('locale') ? storage.get('locale') : null;
+const i18n = i18nFactory.create(path.join(__dirname, '../../../locales'), locale);
 
 class TemplateService {
 
-    constructor() {
-        i18n.config(path.join(__dirname, '../../../locales'));
+    getLocales() {
+        return i18n.getLocales();
+    }
+
+    changeLocale(locale) {
+        storage.set('locale', locale);
+        return i18n.changeLocale(locale);
     }
 
     translate(key, params = {}) {
