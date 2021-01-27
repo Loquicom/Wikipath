@@ -24,7 +24,8 @@
         "host": "H&eacute;berger",
         "error": {
             "pseudo": "Le pseudo est requis"
-        }
+        },
+        "option": "Options"
     },
     "join": {
         "code": "Code de la partie",
@@ -57,5 +58,21 @@
         "history": "Historique de",
         "previous": "<-",
         "next": "->"
+    },
+    "option": {
+        "title": "Options",
+        "lang": "Séléctionnez la langue",
+        "valid": "Valider",
+        "cache": {
+            "text": "Supprimer le cache de l'application (remise à zéro)",
+            "clear": "Supprimer",
+            "success": "Le cache a été supprimé"
+        },
+        "credit": {
+            "title": "Crédit",
+            "developer": "Développeur",
+            "tester": "Testeur",
+            "github": "Le code de l'application est disponible sur Github"
+        }
     }
 }

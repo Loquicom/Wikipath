@@ -1,0 +1,48 @@
+<div class="row">
+    <div class="col-12 center" style="margin-top: 4em;">
+        <h2>{{_.option.title}}</h2>
+    </div>
+</div>
+<div class="row" style="margin-top: 2em;">
+    <div class="col-9">
+        <label for="lang-select">{{_.option.lang}}</label>
+        <div class="nes-select">
+            <select required id="lang-select">
+            </select>
+        </div>
+    </div>
+    <div class="col-3" style="margin-top: 2.5em;">
+        <button type="button" class="nes-btn is-primary" onclick="changeLocale()">{{_.option.valid}}</button>
+    </div>
+</div>
+<div class="row" style="margin-top: 2em;">
+    <div class="col-9" style="margin-top: 1em;">
+        <span>{{_.option.cache.text}}</span>
+    </div>
+    <div class="col-3">
+        <button type="button" class="nes-btn is-primary" onclick="clearCache()">{{_.option.cache.clear}}</button>
+    </div>
+</div>
+<div class="row center" style="margin-top: 4em;">
+    <div class="col-12">
+        {{_.option.credit.title}}
+    </div>
+</div>
+<div class="row center" style="margin-top: 2em;">
+    <div class="col-6">
+        <p>{{_.option.credit.developer}}</p>
+        <p>Loquicom</p>
+    </div>
+    <div class="col-6">
+        <p>{{_.option.credit.tester}}</p>
+        <p>Mirios</p>
+    </div>
+</div>
+<div class="row">
+    <div class="col-12 center">
+        <a href="https://github.com/Loquicom/Wikipath" target="_browser">{{_.option.credit.github}}</a>
+    </div>
+</div>
+
+<!-- Return button -->
+<button type="button" class="nes-btn is-error return-btn" onclick="back()"><-</button>

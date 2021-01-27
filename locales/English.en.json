@@ -24,7 +24,8 @@
         "host": "Host",
         "error": {
             "pseudo": "Pseudo is required"
-        }
+        },
+        "option": "Options"
     },
     "join": {
         "code": "Game code",
@@ -57,5 +58,21 @@
         "history": "History of",
         "previous": "<-",
         "next": "->"
+    },
+    "option": {
+        "title": "Options",
+        "lang": "Select a language",
+        "valid": "Validate",
+        "cache": {
+            "text": "Clear app cache (reset)",
+            "clear": "Clear",
+            "success": "The cache has been cleared"
+        },
+        "credit": {
+            "title": "Credit",
+            "developer": "Developer",
+            "tester": "Tester",
+            "github": "The code of the application is available on Github"
+        }
     }
 }

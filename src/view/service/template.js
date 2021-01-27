@@ -14,6 +14,10 @@ class TemplateService {
         return i18n.getLocales();
     }
 
+    getCurrentLocale() {
+        return i18n.getCurrentLocale();
+    }
+
     changeLocale(locale) {
         storage.set('locale', locale);
         return i18n.changeLocale(locale);

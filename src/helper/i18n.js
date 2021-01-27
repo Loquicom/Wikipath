@@ -1,5 +1,5 @@
 // Imports
-const { app } = require('electron');
+const preferredLocale = require('preferred-locale');
 const path = require('path');
 const Entities = require('html-entities').AllHtmlEntities;
 const file = require('./file');
@@ -30,15 +30,18 @@ class i18n {
             throw srcDir + 'is not a directory';
         }
         this.#listFiles(srcDir);
-        // Get the local
-        //const systemLocal = app ? app.getLocale() : (navigator.userLanguage || navigator.language || navigator.browserLanguage)
-        this.#locale = locale ? locale : 'fr'//systemLocal;
-        // Load the file for the locale
-        const actualLocale = this.changeLocale(this.#locale);
-        if (!actualLocale) {
-            throw `No translation file found for the locale: ${this.#locale}, and the defaultLocale: ${this.#options.defaultLocale}. Add file for the locale or set the add option to true`;
+        // List all the locales available and get the preferred local
+        const listLocales = [];
+        for (const localeInfo of this.getLocales()) {
+            listLocales.push(localeInfo.code);
         }
-        this.#locale = actualLocale;
+        const systemLocal = preferredLocale(listLocales, this.#options.defaultLocale, { lowerCaseRegion: true });
+        const selectedLocale = locale ? locale : systemLocal;
+        // Load the file for the locale
+        const actualLocale = this.changeLocale(selectedLocale);
+        if (!actualLocale) {
+            throw `No translation file found for the locale: ${selectedLocale}, and the defaultLocale: ${this.#options.defaultLocale}. Add file for the locale or set the add option to true`;
+        }
     }
 
     changeLocale(localeCode) {
@@ -74,12 +77,13 @@ class i18n {
                 localeCode = this.#options.defaultLocale;
             }
         }
-        // Read the file
-        this.#translation = file.loadJson(this.#fileList[localeCode].path);
+        // Set the locale and read the file
+        this.#locale = localeCode;
+        this.#translation = file.loadJson(this.#fileList[this.#locale].path, true);
         if (!this.#translation) {
             this.#translation = {};
         }
-        return localeCode;
+        return this.#locale;
     }
 
     getLocales() {
@@ -91,6 +95,10 @@ class i18n {
             });
         }
         return res;
+    }
+
+    getCurrentLocale() {
+        return this.#locale;
     }
 
     _(key, params = {}) {

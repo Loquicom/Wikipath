@@ -7,6 +7,9 @@ class Dialog {
 
     constructor(name, buttons = [], position = 'right') {
         this.id += `-${name}`;
+        if ($(`#${this.id}`).length) {
+            $(`#${this.id}`).remove();
+        }
         $('body').append(this.dialogHTML(this.id, buttons, position));
     }
 
@@ -84,6 +87,14 @@ class Dialog {
 class DialogService {
 
     dialogs = {};
+
+    newDialog(name, buttons = [], position = '') {
+        if (!Array.isArray(buttons)) {
+            buttons = [buttons];
+        }
+        this.dialogs[name] = new Dialog(name, buttons, position);
+        return this.dialogs[name];
+    }
 
     createDialog(name, buttons = [], position = '') {
         if (!this.dialogs[name]) {

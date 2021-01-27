@@ -1,6 +1,6 @@
 // Imports
 const $ = require('jquery');
-const { ipcRenderer } = require('electron');
+const { ipcRenderer, shell } = require('electron');
 const path = require('path');
 const Entities = require('html-entities').Html5Entities;
 const fs = require('fs');
@@ -73,3 +73,16 @@ $.fn.enterKey = function(fn) {
 }
 
 const _ = template.translate;
+
+// Listeners
+$('body').on('click', 'a', function(evt) {
+    // Get the target
+    const target = $(this).attr('target');
+    // If target is browser open link in the default browser
+    if (target !== '_browser') {
+        return;
+    }
+    evt.preventDefault();
+    const link = $(this).attr('href');
+    shell.openExternal(link);
+});

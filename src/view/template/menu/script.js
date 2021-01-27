@@ -15,6 +15,10 @@ function join() {
     routerService.redirect('join', scope);
 }
 
+function option() {
+    routerService.redirect('option');
+}
+
 // Document is ready
 $(() => {
     // Set last pseudo in pseudo input
