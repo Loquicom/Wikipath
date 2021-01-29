@@ -5,7 +5,10 @@
         "close": "Fermer",
         "go": {
             "menu": "Retour au menu"
-        }
+        },
+        "valid": "Valider",
+        "no": "Non",
+        "yes": "Oui"
     },
     "error": {
         "notfound": "Impossible de se connecter au serveur",
@@ -62,7 +65,7 @@
     "option": {
         "title": "Options",
         "lang": "Séléctionnez la langue",
-        "valid": "Valider",
+        "fullscreen": "Plein écran",
         "cache": {
             "text": "Supprimer le cache de l'application (remise à zéro)",
             "clear": "Supprimer",

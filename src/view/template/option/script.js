@@ -13,6 +13,16 @@ function changeLocale() {
     routerService.redirect('option', scope);
 }
 
+function fullScreen() {
+    let val;
+    $('input[name=fullscreen]').each((index, elt) => {
+        if ($(elt).prop('checked')) {
+            val = $(elt).val() === "true" ? true : false;
+        }
+    })
+    ipcRenderer.send('full-screen', val);
+}
+
 function clearCache() {
     // Clear storage and set the correct devMode
     const devMode = storage.get('dev');

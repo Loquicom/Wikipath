@@ -5,7 +5,10 @@
         "close": "Close",
         "go": {
             "menu": "Back to the menu"
-        }
+        },
+        "valid": "Validate",
+        "no": "No",
+        "yes": "Yes"
     },
     "error": {
         "notfound": "Unable to connect to the server",
@@ -62,7 +65,7 @@
     "option": {
         "title": "Options",
         "lang": "Select a language",
-        "valid": "Validate",
+        "fullscreen": "Full screen",
         "cache": {
             "text": "Clear app cache (reset)",
             "clear": "Clear",

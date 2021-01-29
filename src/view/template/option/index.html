@@ -12,23 +12,43 @@
         </div>
     </div>
     <div class="col-3" style="margin-top: 2.5em;">
-        <button type="button" class="nes-btn is-primary" onclick="changeLocale()">{{_.option.valid}}</button>
+        <button type="button" class="nes-btn is-primary" onclick="changeLocale()">{{_.common.valid}}</button>
     </div>
 </div>
-<div class="row" style="margin-top: 2em;">
-    <div class="col-9" style="margin-top: 1em;">
+<div class="row">
+    <div class="col-9">
+        <div class="row" style="margin-top: 2em;">
+            <label>{{_.option.fullscreen}}</label>
+            <div class="col-12">
+                <label>
+                    <input type="radio" class="nes-radio" name="fullscreen" value="false" checked />
+                    <span>{{_.common.no}}</span>
+                </label>
+                <label>
+                    <input type="radio" class="nes-radio" name="fullscreen" value="true" />
+                    <span>{{_.common.yes}}</span>
+                </label>
+            </div>
+        </div>
+    </div>
+    <div class="col-3" style="margin-top: 2.5em;">
+        <button type="button" class="nes-btn is-primary" onclick="fullScreen()">{{_.common.valid}}</button>
+    </div>
+</div>
+<div class="row" style="margin-top: 1em;">
+    <div class="col-9">
         <span>{{_.option.cache.text}}</span>
     </div>
     <div class="col-3">
         <button type="button" class="nes-btn is-primary" onclick="clearCache()">{{_.option.cache.clear}}</button>
     </div>
 </div>
-<div class="row center" style="margin-top: 4em;">
+<div class="row center" style="margin-top: 3em;">
     <div class="col-12">
         {{_.option.credit.title}}
     </div>
 </div>
-<div class="row center" style="margin-top: 2em;">
+<div class="row center" style="margin-top: 1em;">
     <div class="col-6">
         <p>{{_.option.credit.developer}}</p>
         <p>Loquicom</p>

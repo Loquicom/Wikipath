@@ -69,3 +69,8 @@ ipcMain.on('change-history', (event, link) => {
 ipcMain.on('get-players-info', (event) => {
     wikipathEvent.emit('get-players-info');
 });
+
+// Manage full screen
+ipcMain.on('full-screen', (event, toggle) => {
+    mainWindow.setFullScreen(toggle);
+});
