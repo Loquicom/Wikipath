@@ -1,7 +1,8 @@
 // Import
-const { ipcMain } = require('electron');
+const { app, ipcMain } = require('electron');
 const dialog = require('./service/dialog');
 const iphex = require('../helper/iphex');
+const { event } = require('jquery');
 
 // Join event
 ipcMain.on('connection-code', (event, data) => {
@@ -73,4 +74,9 @@ ipcMain.on('get-players-info', (event) => {
 // Manage full screen
 ipcMain.on('full-screen', (event, toggle) => {
     mainWindow.setFullScreen(toggle);
+});
+
+// Quit game
+ipcMain.on('quit', (event) => {
+    app.quit();
 });

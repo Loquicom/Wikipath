@@ -19,6 +19,10 @@ function option() {
     routerService.redirect('option');
 }
 
+function quit() {
+    ipcRenderer.send('quit');
+}
+
 // Document is ready
 $(() => {
     // Set last pseudo in pseudo input
