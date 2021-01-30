@@ -24,7 +24,7 @@ class Storage {
     get(key) {
         let value = localStorage.getItem(key);
         if (!value) {
-            return false;
+            return null;
         }
         const datatype = localStorage.getItem('#' + key + '-datatype');
         switch (datatype) {

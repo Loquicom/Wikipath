@@ -23,6 +23,9 @@
             if (storage.get('dev')) {
                 page = storage.get('page') ? storage.get('page') : page;
             }
+            if (storage.get('fullscreen') !== null) {
+                ipcRenderer.send('full-screen', storage.get('fullscreen'));
+            }
             routerService.redirect(page);
         </script>
     </body>

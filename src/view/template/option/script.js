@@ -19,7 +19,8 @@ function fullScreen() {
         if ($(elt).prop('checked')) {
             val = $(elt).val() === "true" ? true : false;
         }
-    })
+    });
+    storage.set('fullscreen', val);
     ipcRenderer.send('full-screen', val);
 }
 
@@ -45,4 +46,11 @@ $(() => {
         html += `<option value="${locale.code}"${selected}>${locale.name}</option>\n`;
     }
     $('#lang-select').html(html);
+    // Checked the correct value for full screen
+    const fullscreen = storage.get('fullscreen')
+    if (fullscreen) {
+        $('#fullscreen-true').prop('checked', true);
+    } else {
+        $('#fullscreen-false').prop('checked', true)
+    }
 });
