@@ -72,7 +72,7 @@
             "success": "The cache has been cleared"
         },
         "credit": {
-            "title": "Credit",
+            "title": "Credits",
             "developer": "Developer",
             "tester": "Tester",
             "github": "The code of the application is available on Github"
