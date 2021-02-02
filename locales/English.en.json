@@ -71,11 +71,17 @@
             "clear": "Clear",
             "success": "The cache has been cleared"
         },
-        "credit": {
-            "title": "Credits",
-            "developer": "Developer",
-            "tester": "Tester",
-            "github": "The code of the application is available on Github"
+        "credit": "Credits",
+        "apply": "Apply"
+    },
+    "credit": {
+        "title": "Credits",
+        "developer": "Developer",
+        "tester": "Tester",
+        "link": "Links",
+        "github": {
+            "client": "The code of the application is available on Github",
+            "server": "The server and its code are also available on Github."
         }
     }
 }

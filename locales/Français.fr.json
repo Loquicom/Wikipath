@@ -71,11 +71,17 @@
             "clear": "Supprimer",
             "success": "Le cache a été supprimé"
         },
-        "credit": {
-            "title": "Crédits",
-            "developer": "Développeur",
-            "tester": "Testeur",
-            "github": "Le code de l'application est disponible sur Github"
+        "credit": "Cr&eacute;dits",
+        "apply": "Appliquer"
+    },
+    "credit": {
+        "title": "Cr&eacute;dits",
+        "developer": "D&eacute;veloppeur",
+        "tester": "Testeur",
+        "link": "Liens",
+        "github": {
+            "client": "Le code de l&apos;application est disponible sur Github",
+            "server": "Le serveur et son code sont aussi disponible sur Github"
         }
     }
 }

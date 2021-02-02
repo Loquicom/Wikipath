@@ -20,8 +20,10 @@ function fullScreen() {
             val = $(elt).val() === "true" ? true : false;
         }
     });
-    storage.set('fullscreen', val);
-    ipcRenderer.send('full-screen', val);
+    if (val !== undefined) {
+        storage.set('fullscreen', val);
+        ipcRenderer.send('full-screen', val);
+    }
 }
 
 function clearCache() {
@@ -33,6 +35,15 @@ function clearCache() {
     if (!scope.optionDialog.isOpen()) {
         scope.optionDialog.open(_('option.cache.success'));
     }
+}
+
+function credit() {
+    routerService.redirect('credit', scope);
+}
+
+function apply() {
+    fullScreen();
+    changeLocale();
 }
 
 // When DOM is ready
