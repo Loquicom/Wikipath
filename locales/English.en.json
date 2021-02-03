@@ -23,6 +23,7 @@
         "badprotocol": "Incompatible server version"
     },
     "menu": {
+        "play": "Play",
         "join": "Join",
         "host": "Host",
         "error": {

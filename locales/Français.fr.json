@@ -23,6 +23,7 @@
         "badprotocol": "Version du serveur incompatible"
     },
     "menu": {
+        "play": "Jouer",
         "join": "Rejoindre",
         "host": "H&eacute;berger",
         "error": {
