@@ -1,8 +1,6 @@
 // Import
 const { app, ipcMain } = require('electron');
-const dialog = require('./service/dialog');
 const iphex = require('../helper/iphex');
-const { event } = require('jquery');
 
 // Join event
 ipcMain.on('connection-code', (event, data) => {
