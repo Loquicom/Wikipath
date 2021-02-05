@@ -1,0 +1,54 @@
+<div class="row">
+    <div class="col-12 center" style="margin-top: 4em;">
+        <h2>{{_.option.title}}</h2>
+    </div>
+</div>
+<div class="row" style="margin-top: 2em;">
+    <div class="col-9">
+        <label for="lang-select">{{_.option.lang}}</label>
+        <div class="nes-select">
+            <select required id="lang-select">
+            </select>
+        </div>
+    </div>
+    <div class="col-3" style="margin-top: 2.5em;">
+        <button type="button" class="nes-btn is-primary" onclick="changeLocale()">{{_.common.valid}}</button>
+    </div>
+</div>
+<div class="row">
+    <div class="col-9">
+        <div class="row" style="margin-top: 2em;">
+            <label>{{_.option.fullscreen}}</label>
+            <div class="col-12">
+                <label>
+                    <input id="fullscreen-true" type="radio" class="nes-radio" name="fullscreen" value="true" />
+                    <span>{{_.common.yes}}</span>
+                </label>
+                <label>
+                    <input id="fullscreen-false" type="radio" class="nes-radio" name="fullscreen" value="false" />
+                    <span>{{_.common.no}}</span>
+                </label>
+            </div>
+        </div>
+    </div>
+    <div class="col-3" style="margin-top: 2.5em;">
+        <button type="button" class="nes-btn is-primary" onclick="fullScreen()">{{_.common.valid}}</button>
+    </div>
+</div>
+<div class="row" style="margin-top: 1em;">
+    <div class="col-9">
+        <span>{{_.option.cache.text}}</span>
+    </div>
+    <div class="col-3">
+        <button type="button" class="nes-btn is-primary" onclick="clearCache()">{{_.option.cache.clear}}</button>
+    </div>
+</div>
+<div class="row center" style="margin-top: 3em;">
+    <div class="col-12">
+        <button type="button" class="nes-btn is-primary" onclick="apply()">{{_.option.apply}}</button>
+        <button type="button" class="nes-btn is-primary" onclick="credit()">{{_.option.credit}}</button>
+    </div>
+</div>
+
+<!-- Return button -->
+<button type="button" class="nes-btn is-error return-btn" onclick="back()"><-</button>

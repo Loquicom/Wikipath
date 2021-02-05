@@ -63,6 +63,9 @@ class Loader {
     }
 
     open() {
+        if (this.#open) {
+            return;
+        }
         this.#open = true;
         this.#dialog.open();
         this.#interval = setInterval(() => {
@@ -85,9 +88,11 @@ class Loader {
     }
 
     close() {
-        this.#open = false;
-        this.#dialog.close();
-        clearInterval(this.#interval);
+        if (this.#open) {
+            this.#open = false;
+            this.#dialog.close();
+            clearInterval(this.#interval);
+        }
     }
 
     isOpen() {

@@ -1,0 +1,23 @@
+.return-btn {
+    position: absolute;
+    top: 10px;
+    left: 10px;
+}
+
+.title {
+    font-size: large;
+    font-style: italic;
+    font-weight: bold;
+}
+
+.content {
+    font-size: medium;
+}
+
+#footer { 
+    position: fixed; 
+    padding: 10px 10px 10px 10px; 
+    bottom: 80px;
+    left: 0;
+    width: 100%;
+}

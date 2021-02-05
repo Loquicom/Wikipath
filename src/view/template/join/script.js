@@ -1,8 +1,3 @@
-// Variables
-let dialog;
-let progress = 0;
-let interval;
-
 // Functions
 function back() {
     routerService.redirect('menu');
@@ -28,7 +23,8 @@ ipcRenderer.on('connected', (event, data) => {
     storage.set('self', data.self);
     storage.set('server-name', data.name);
     loader.close();
-    routerService.redirect('lobby');
+    scope.server = {name: data.name};
+    routerService.redirect('lobby', scope);
 });
 
 ipcRenderer.on('invalid-code', (event, code) => {
@@ -47,5 +43,8 @@ $(() => {
         join();
     });
     // Focus code input
+    if (storage.get('server-addr')) {
+        $('#code').val(storage.get('server-addr'));
+    }
     $('#code').trigger('focus');
 })

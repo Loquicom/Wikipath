@@ -1,6 +1,5 @@
 // Import
-const { ipcMain } = require('electron');
-const dialog = require('./service/dialog');
+const { app, ipcMain } = require('electron');
 const iphex = require('../helper/iphex');
 
 // Join event
@@ -68,4 +67,14 @@ ipcMain.on('change-history', (event, link) => {
 // Get players info
 ipcMain.on('get-players-info', (event) => {
     wikipathEvent.emit('get-players-info');
+});
+
+// Manage full screen
+ipcMain.on('full-screen', (event, toggle) => {
+    mainWindow.setFullScreen(toggle);
+});
+
+// Quit game
+ipcMain.on('quit', (event) => {
+    app.quit();
 });

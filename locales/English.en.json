@@ -5,7 +5,10 @@
         "close": "Close",
         "go": {
             "menu": "Back to the menu"
-        }
+        },
+        "valid": "Validate",
+        "no": "No",
+        "yes": "Yes"
     },
     "error": {
         "notfound": "Unable to connect to the server",
@@ -20,11 +23,13 @@
         "badprotocol": "Incompatible server version"
     },
     "menu": {
+        "play": "Play",
         "join": "Join",
         "host": "Host",
         "error": {
             "pseudo": "Pseudo is required"
-        }
+        },
+        "option": "Options"
     },
     "join": {
         "code": "Game code",
@@ -57,5 +62,27 @@
         "history": "History of",
         "previous": "<-",
         "next": "->"
+    },
+    "option": {
+        "title": "Options",
+        "lang": "Select a language",
+        "fullscreen": "Full screen",
+        "cache": {
+            "text": "Clear app cache (reset)",
+            "clear": "Clear",
+            "success": "The cache has been cleared"
+        },
+        "credit": "Credits",
+        "apply": "Apply"
+    },
+    "credit": {
+        "title": "Credits",
+        "developer": "Developer",
+        "tester": "Tester",
+        "link": "Links",
+        "github": {
+            "client": "The code of the application is available on Github",
+            "server": "The server and its code are also available on Github."
+        }
     }
 }
