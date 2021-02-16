@@ -106,6 +106,8 @@
                 "window": "Fenêtre",
                 "minimize": "Minimiser",
                 "size": "Réinitialiser taille",
+                "reload": "Recharger",
+                "devtool": "Outils pour les développeurs",
                 "about": "À propos",
                 "version": "Versions",
                 "donation": "Donation"

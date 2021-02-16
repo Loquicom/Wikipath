@@ -106,6 +106,8 @@
                 "window": "Window",
                 "minimize": "Minimize",
                 "size": "Reset size",
+                "reload": "Reload",
+                "devtool": "Developer Tools",
                 "about": "About",
                 "version": "Versions",
                 "donation": "Donation"

@@ -12,10 +12,10 @@ function template() {
                 },
                 {
                     label: _('app.menu.application.reset'),
-                    accelerator: 'CmdOrCtrl+R',
+                    accelerator: devMode ? 'CmdOrCtrl+Shift+R' : 'CmdOrCtrl+R',
                     click: () => {
                         console.log('TODO reset');
-                    }
+                    },
                 },
                 {
                     type: 'separator'
@@ -23,7 +23,7 @@ function template() {
                 {
                     label: _('app.menu.application.rotate'),
                     click: () => {
-                        console.log('TODO rotate');
+                        mainWindow.webContents.send('app-menu-rotate', 'aze');
                     }
                 }
             ]
@@ -41,6 +41,20 @@ function template() {
                     click: () => {
                         console.log('TODO reset size')
                     }
+                },
+                {
+                    type: 'separator',
+                    visible: devMode
+                },
+                {
+                    label: _('app.menu.application.reload'),
+                    role: 'reload',
+                    visible: devMode
+                },
+                {
+                    label: _('app.menu.application.devtool'),
+                    role: 'toggleDevTools',
+                    visible: devMode
                 }
             ]
         },

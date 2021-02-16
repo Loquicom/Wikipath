@@ -25,6 +25,7 @@ let dialog;
 
 // Variables
 const scope = {};
+const _ = template.translate.bind(template);
 
 // Functions
 function convertToArray(obj) {
@@ -71,8 +72,6 @@ $.fn.enterKey = function(fn) {
         });
     });
 }
-
-const _ = template.translate;
 
 // Listeners
 $('body').on('click', 'a', function(evt) {
