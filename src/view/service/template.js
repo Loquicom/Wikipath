@@ -9,6 +9,11 @@ const storage = require('./storage');
 const locale = storage.get('locale') ? storage.get('locale') : null;
 const i18n = i18nFactory.create(path.join(__dirname, '../../../locales'), locale);
 
+// If locale is not the default one alert the main process
+if (locale) {
+    ipcRenderer.send('change-locale', locale);
+}
+
 class TemplateService {
 
     getLocales() {
