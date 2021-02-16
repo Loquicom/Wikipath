@@ -69,6 +69,11 @@ ipcMain.on('get-players-info', (event) => {
     wikipathEvent.emit('get-players-info');
 });
 
+// Change locale
+ipcMain.on('change-locale', (event, locale) => {
+    i18n.changeLocale(locale);
+});
+
 // Manage full screen
 ipcMain.on('full-screen', (event, toggle) => {
     mainWindow.setFullScreen(toggle);

@@ -1,4 +1,5 @@
 // Imports
+const { ipcRenderer } = require('electron');
 const $ = require('jquery');
 const Handlebars = require('handlebars');
 const i18nFactory = require('../../helper/i18n');
@@ -20,6 +21,7 @@ class TemplateService {
 
     changeLocale(locale) {
         storage.set('locale', locale);
+        ipcRenderer.send('change-locale', locale);
         return i18n.changeLocale(locale);
     }
 

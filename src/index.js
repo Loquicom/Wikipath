@@ -19,7 +19,7 @@ global.wikipathEvent = new events.EventEmitter();
 global.mainWindow = null;
 global.devMode = process.argv.length > 2 && process.argv[2] === '--dev';
 global.i18n = i18nFactory.create(path.join(__dirname, '../locales'));
-global._ = i18n._;
+global._ = i18n._.bind(i18n);
 
 /* --- Functions --- */
 
