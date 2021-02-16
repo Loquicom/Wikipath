@@ -22,6 +22,17 @@
         "stop": "The server is closed",
         "badprotocol": "Incompatible server version"
     },
+    "title": {
+        "menu": "Menu",
+        "option": "Options",
+        "credit": "Credits",
+        "join": "Join",
+        "lobby": "Lobby",
+        "game": "",
+        "information" : "Informations",
+        "result": "Result",
+        "history": "History"
+    },
     "menu": {
         "play": "Play",
         "join": "Join",

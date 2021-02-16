@@ -6,6 +6,7 @@ const file = require('../../helper/file');
 const template = require('./template');
 const storage = require('./storage');
 const loaderService = require('./loader');
+const title = require('./title');
 
 // Parameters
 const prefix = '../template/';
@@ -81,6 +82,8 @@ class RouterService {
         // Show html
         loaderService.getLoader().close();
         $('#router').html(html);
+        // Change title
+        title.setPage(dest);
     }
 
     back() {
