@@ -72,6 +72,7 @@ ipcMain.on('get-players-info', (event) => {
 // Change locale
 ipcMain.on('change-locale', (event, locale) => {
     i18n.changeLocale(locale);
+    process['application-menu']();
 });
 
 // Manage full screen

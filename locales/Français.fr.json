@@ -29,7 +29,7 @@
         "join": "Rejoindre",
         "lobby": "Lobby",
         "game": "",
-        "information" : "Informations",
+        "information": "Informations",
         "result": "Résultat",
         "history": "Historique"
     },
@@ -94,6 +94,28 @@
         "github": {
             "client": "Le code de l&apos;application est disponible sur Github",
             "server": "Le serveur et son code sont aussi disponible sur Github"
+        }
+    },
+    "app": {
+        "menu": {
+            "application": {
+                "application": "Application",
+                "close": "Fermer",
+                "reset": "Réinitialiser",
+                "rotate": "Faire tourner",
+                "window": "Fenêtre",
+                "minimize": "Minimiser",
+                "size": "Réinitialiser taille",
+                "about": "À propos",
+                "version": "Versions",
+                "donation": "Donation"
+            },
+            "context": {
+                "copy": "Copier",
+                "cut": "Couper",
+                "paste": "Coller",
+                "back": "Retour"
+            }
         }
     }
 }

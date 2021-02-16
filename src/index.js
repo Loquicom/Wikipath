@@ -20,6 +20,7 @@ global.mainWindow = null;
 global.devMode = process.argv.length > 2 && process.argv[2] === '--dev';
 global.i18n = i18nFactory.create(path.join(__dirname, '../locales'));
 global._ = i18n._.bind(i18n);
+global.process = [];
 
 /* --- Functions --- */
 
@@ -40,7 +41,7 @@ function loadMainProcessFiles() {
   mainProcessFiles.forEach(f => {
     const filepath = path.join(__dirname, 'main/', f)
     if (file.isFile(filepath)) {
-      require(filepath);
+      process[f.replaceAll('.js', '')] = require(filepath);
     }
   });
 }
