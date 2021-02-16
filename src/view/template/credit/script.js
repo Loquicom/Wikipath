@@ -1,6 +1,6 @@
 // Functions
 function back() {
-    routerService.redirect('option', scope);
+    routerService.back();
 }
 
 function menu() {

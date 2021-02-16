@@ -13,6 +13,11 @@ const route = {};
 
 class RouterService {
 
+    #lastPage = null;
+    #lastScope = null;
+    #backPage = null;
+    #backScope = null;
+
     path(dest) {
         // Get path to the file
         let filepath;
@@ -63,6 +68,11 @@ class RouterService {
             html += '<script>\n' + script + '\n</script>';
         }
         html = template.generate(html, scope);
+        // Copy the scope and the page name
+        this.#backPage = this.#lastPage;
+        this.#backScope = this.#lastScope;
+        this.#lastPage = dest;
+        this.#lastScope = JSON.parse(JSON.stringify(scope));
         // Clear the scope and ipcRenderer events
         for (const key in scope) {
             delete scope[key];
@@ -71,6 +81,13 @@ class RouterService {
         // Show html
         loaderService.getLoader().close();
         $('#router').html(html);
+    }
+
+    back() {
+        if (!this.#backPage) {
+            return false;
+        }
+        return this.redirect(this.#backPage, this.#backScope);
     }
 
 }
