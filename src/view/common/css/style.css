@@ -15,9 +15,9 @@
 }
 
 .rotate {
-    -webkit-animation:rotate 4s linear infinite;
-    -moz-animation:rotate 4s linear infinite;
-    animation:rotate 4s linear infinite;
+    -webkit-animation:rotate 2s linear infinite;
+    -moz-animation:rotate 2s linear infinite;
+    animation:rotate 2s linear infinite;
 }
 @-moz-keyframes rotate { 100% { -moz-transform: rotate(360deg); } }
 @-webkit-keyframes rotate { 100% { -webkit-transform: rotate(360deg); } }

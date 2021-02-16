@@ -20,36 +20,38 @@ function errorDialog(msg, redirect = true) {
 }
 
 // Events
-ipcRenderer.on('server-stop', (event, message) => {
-    errorDialog('error.stop');
-});
-ipcRenderer.on('error-notfound', (event, message) => {
-    errorDialog('error.notfound', false);
-});
-ipcRenderer.on('error-connection', (event, message) => {
-    errorDialog('error.connection');
-});
-ipcRenderer.on('error-disconnection', (event, message) => {
-    // Trigger disconnection if no other error is trigger
-    setTimeout(() => {
-        errorDialog('error.disconnection');
-    }, 500);
-});
-ipcRenderer.on('error-broken-connection', (event, message) => {
-    errorDialog('error.broken');
-});
-ipcRenderer.on('error-bad-protocol', (event, message) => {
-    errorDialog('error.badprotocol', false);
-});
-ipcRenderer.on('error-in-game', (event, message) => {
-    errorDialog('error.ingame', false);
-});
-ipcRenderer.on('error-server-full', (event, message) => {
-    errorDialog('error.full', false);
-});
-ipcRenderer.on('error-unknown-command', (event, message) => {
-    errorDialog('error.command');
-});
-ipcRenderer.on('error-unknown', (event, message) => {
-    errorDialog('error.unknown');
-});
+setTimeout(() => { // Add event listener after all process
+    ipcRenderer.on('server-stop', (event, message) => {
+        errorDialog('error.stop');
+    });
+    ipcRenderer.on('error-notfound', (event, message) => {
+        errorDialog('error.notfound', false);
+    });
+    ipcRenderer.on('error-connection', (event, message) => {
+        errorDialog('error.connection');
+    });
+    ipcRenderer.on('error-disconnection', (event, message) => {
+        // Trigger disconnection if no other error is trigger
+        setTimeout(() => {
+            errorDialog('error.disconnection');
+        }, 500);
+    });
+    ipcRenderer.on('error-broken-connection', (event, message) => {
+        errorDialog('error.broken');
+    });
+    ipcRenderer.on('error-bad-protocol', (event, message) => {
+        errorDialog('error.badprotocol', false);
+    });
+    ipcRenderer.on('error-in-game', (event, message) => {
+        errorDialog('error.ingame', false);
+    });
+    ipcRenderer.on('error-server-full', (event, message) => {
+        errorDialog('error.full', false);
+    });
+    ipcRenderer.on('error-unknown-command', (event, message) => {
+        errorDialog('error.command');
+    });
+    ipcRenderer.on('error-unknown', (event, message) => {
+        errorDialog('error.unknown');
+    });
+}, 0);

@@ -22,8 +22,9 @@ function template() {
                 },
                 {
                     label: _('app.menu.application.rotate'),
+                    type: 'checkbox',
                     click: () => {
-                        mainWindow.webContents.send('app-menu-rotate', 'aze');
+                        mainWindow.webContents.send('app-menu-rotate');
                     }
                 }
             ]
