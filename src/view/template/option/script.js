@@ -62,6 +62,6 @@ $(() => {
     if (fullscreen) {
         $('#fullscreen-true').prop('checked', true);
     } else {
-        $('#fullscreen-false').prop('checked', true)
+        $('#fullscreen-false').prop('checked', true);
     }
 });

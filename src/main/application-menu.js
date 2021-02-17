@@ -47,10 +47,6 @@ function template() {
                     }
                 },
                 {
-                    type: 'separator',
-                    visible: devMode
-                },
-                {
                     label: _('app.menu.application.reload'),
                     role: 'reload',
                     visible: devMode
