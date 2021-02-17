@@ -11,4 +11,8 @@ function setRendererEvents() {
             $('body').addClass('rotate');
         }
     });
+
+    ipcRenderer.on('context-menu-back', (event) => {
+        routerService.back();
+    });
 }

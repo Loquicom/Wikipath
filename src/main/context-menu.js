@@ -23,7 +23,7 @@ function buildMenu() {
     menu.append(new MenuItem({
         label: _('app.menu.context.back'),
         click: () => {
-            console.log('TODO back');
+            mainWindow.webContents.send('context-menu-back');
         }
     }));
     return menu;
