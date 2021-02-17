@@ -1,5 +1,9 @@
 
 function setRendererEvents() {
+    ipcRenderer.on('app-menu-reset', (event) => {
+        routerService.redirect('menu', scope);
+    });
+
     ipcRenderer.on('app-menu-rotate', (event) => {
         if ($('body').hasClass('rotate')) {
             $('body').removeClass('rotate');

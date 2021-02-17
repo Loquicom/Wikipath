@@ -133,7 +133,7 @@ function setupAction() {
 
 wikipathEvent.on('stop', () => {
     if (client !== null) {
-        client.close();
+        quit();
     }
 });
 

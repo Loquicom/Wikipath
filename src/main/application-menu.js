@@ -1,5 +1,6 @@
 const { Menu, shell } = require('electron');
 const constant = require('../constant');
+const window = require('./service/window');
 
 function template() {
     return [
@@ -15,7 +16,8 @@ function template() {
                     label: _('app.menu.application.reset'),
                     accelerator: devMode ? 'CmdOrCtrl+Shift+R' : 'CmdOrCtrl+R',
                     click: () => {
-                        console.log('TODO reset');
+                        wikipathEvent.emit('stop');
+                        mainWindow.webContents.send('app-menu-reset');
                     },
                 },
                 {
@@ -41,7 +43,7 @@ function template() {
                 {
                     label: _('app.menu.application.size'),
                     click: () => {
-                        console.log('TODO reset size')
+                        mainWindow.setSize(window.defaultValues.width, window.defaultValues.height, true);
                     }
                 },
                 {
