@@ -1,4 +1,5 @@
-const { Menu } = require('electron');
+const { Menu, shell } = require('electron');
+const constant = require('../constant');
 
 function template() {
     return [
@@ -80,7 +81,8 @@ function template() {
                 {
                     label: _('app.menu.application.donation'),
                     click: () => {
-                        console.log('TODO donation');
+                        const rand = Math.floor(Math.random() * constant.DONATION_LINK.length);
+                        shell.openExternal(constant.DONATION_LINK[rand]);
                     }
                 }
             ]
