@@ -20,7 +20,7 @@ function errorDialog(msg, redirect = true) {
 }
 
 // Events
-setTimeout(() => { // Add event listener after all process
+function setErrorEvents() {
     ipcRenderer.on('server-stop', (event, message) => {
         errorDialog('error.stop');
     });
@@ -54,4 +54,4 @@ setTimeout(() => { // Add event listener after all process
     ipcRenderer.on('error-unknown', (event, message) => {
         errorDialog('error.unknown');
     });
-}, 0);
+}

@@ -20,12 +20,21 @@
         <script type="text/javascript" src="../common/js/errorServer.js"></script>
         <script type="text/javascript" src="../common/js/event.js"></script>
         <script type="text/javascript">
+            // Manage fullscreen mode
+            if (storage.get('fullscreen') !== null) {
+                ipcRenderer.send('full-screen', storage.get('fullscreen'));
+            }
+            // Add callback on the router
+            routerService.callback(() => {
+                setTimeout(() => {
+                    setErrorEvents();
+                    setRendererEvents();
+                }, 0);
+            });
+            // Load the correct page
             let page = 'menu';
             if (storage.get('dev')) {
                 page = storage.get('page') ? storage.get('page') : page;
-            }
-            if (storage.get('fullscreen') !== null) {
-                ipcRenderer.send('full-screen', storage.get('fullscreen'));
             }
             routerService.redirect(page);
         </script>

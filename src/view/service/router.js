@@ -18,6 +18,7 @@ class RouterService {
     #lastScope = null;
     #backPage = null;
     #backScope = null;
+    #fn = null;
 
     path(dest) {
         // Get path to the file
@@ -84,6 +85,10 @@ class RouterService {
         $('#router').html(html);
         // Change title
         title.setPage(dest);
+        // Call callback
+        if (this.#fn) {
+            this.#fn();
+        }
     }
 
     back() {
@@ -91,6 +96,16 @@ class RouterService {
             return false;
         }
         return this.redirect(this.#backPage, this.#backScope);
+    }
+
+    callback(fn) {
+        if (typeof fn === 'function') {
+            this.#fn = fn;
+        }
+    }
+
+    removeCallback() {
+        this.#fn = null;
     }
 
 }

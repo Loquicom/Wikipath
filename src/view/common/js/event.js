@@ -1,10 +1,10 @@
-// Add event listener after all process
-setTimeout(() => {
-    ipcRenderer.on('app-menu-rotate', (event, aze) => {
+
+function setRendererEvents() {
+    ipcRenderer.on('app-menu-rotate', (event) => {
         if ($('body').hasClass('rotate')) {
             $('body').removeClass('rotate');
         } else {
             $('body').addClass('rotate');
         }
     });
-}, 0);
+}
