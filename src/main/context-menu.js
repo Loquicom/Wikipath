@@ -1,7 +1,5 @@
 const { Menu, MenuItem, app } = require('electron');
 
-const separator = new MenuItem({type: 'separator'});
-
 function buildMenu() {
     const menu = new Menu();
     menu.append(new MenuItem({
@@ -18,13 +16,6 @@ function buildMenu() {
         label: _('app.menu.context.paste'),
         accelerator: 'CmdOrCtrl+V',
         role: 'paste'
-    }));
-    menu.append(separator);
-    menu.append(new MenuItem({
-        label: _('app.menu.context.back'),
-        click: () => {
-            mainWindow.webContents.send('context-menu-back');
-        }
     }));
     return menu;
 }

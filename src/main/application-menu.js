@@ -48,11 +48,13 @@ function template() {
                 },
                 {
                     label: _('app.menu.application.reload'),
+                    accelerator: devMode ? 'CmdOrCtrl+R' : null,
                     role: 'reload',
                     visible: devMode
                 },
                 {
                     label: _('app.menu.application.devtool'),
+                    accelerator: devMode ? 'CmdOrCtrl+Shift+I' : null,
                     role: 'toggleDevTools',
                     visible: devMode
                 }
