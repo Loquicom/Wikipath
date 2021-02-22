@@ -115,8 +115,7 @@
             "context": {
                 "copy": "Copier",
                 "cut": "Couper",
-                "paste": "Coller",
-                "back": "Retour"
+                "paste": "Coller"
             }
         },
         "dialog": {

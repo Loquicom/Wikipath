@@ -115,8 +115,7 @@
             "context": {
                 "copy": "Copy",
                 "cut": "Cut",
-                "paste": "Paste",
-                "back": "Back"
+                "paste": "Paste"
             }
         },
         "dialog": {
