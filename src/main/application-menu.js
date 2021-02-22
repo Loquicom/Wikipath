@@ -1,6 +1,8 @@
 const { Menu, shell } = require('electron');
+const process = require('process');
 const constant = require('../constant');
 const window = require('./service/window');
+const dialog = require('./service/dialog');
 
 function template() {
     return [
@@ -66,13 +68,30 @@ function template() {
                 {
                     label: _('app.menu.application.about'),
                     click: () => {
-                        console.log('TODO about');
+                        dialog.message(
+                            _('app.menu.application.about'), 
+                            _('app.dialog.about', {licence: constant.LICENCE}),
+                            'info',
+                            [_('common.close')]
+                        );
                     }
                 },
                 {
                     label: _('app.menu.application.version'),
                     click: () => {
-                        console.log('TODO version');
+                        const params = {
+                            version: constant.VERSION,
+                            protocol: constant.PROTOCOL_VERSION,
+                            electron: process.versions.electron,
+                            node: process.versions.node,
+                            chrome: process.versions.chrome
+                        }
+                        dialog.message(
+                            _('app.menu.application.version'), 
+                            _('app.dialog.version', params),
+                            'info',
+                            [_('common.close')]
+                        );
                     }
                 },
                 {

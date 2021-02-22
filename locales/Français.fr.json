@@ -118,6 +118,10 @@
                 "paste": "Coller",
                 "back": "Retour"
             }
+        },
+        "dialog": {
+            "about": "Wikipath par Loquicom\n\nLicence : ${licence}\nDisponible sur Github",
+            "version": "Wikipath : ${version}\nProtocole Wikipath : ${protocol}\nNode : ${node}\nElectron : ${electron}\nChrome : ${chrome}"
         }
     }
 }

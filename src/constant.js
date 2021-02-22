@@ -1,4 +1,6 @@
 const constant = {
+    VERSION: '0.2.0',
+    LICENCE: 'MIT',
     PORT: 42826,
     PROTOCOL_VERSION: 1,
     DONATION_LINK: [
