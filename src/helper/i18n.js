@@ -91,7 +91,8 @@ class i18n {
         for(const key in this.#fileList) {
             res.push({
                 name: this.#fileList[key].name,
-                code: this.#fileList[key].code
+                code: this.#fileList[key].code,
+                localeName: this.#getLangLocaleName(this.#fileList[key].code),
             });
         }
         return res;
@@ -106,6 +107,9 @@ class i18n {
     }
 
     translate(key, params = {}) {
+        if (!this.#locale) {
+            return false;
+        }
         // Get translation
         const keys = key.split('.');
         let translation = this.#translation;
@@ -152,6 +156,20 @@ class i18n {
                 }
             }
         }
+    }
+
+    #getLangLocaleName(localeCode) {
+        const translationKey = `lang.${localeCode}`;
+        const addOption = this.#options.add;
+        // Get the lang value (don't add a value is the lang is not found)
+        this.#options.add = false;
+        let localeName = this.translate(translationKey);
+        this.#options.add = addOption;
+        // Return null if the lang is not found
+        if (!localeName || localeName === translationKey) {
+            localeName = null;
+        }
+        return localeName;
     }
 
     #addTranslation(key) {

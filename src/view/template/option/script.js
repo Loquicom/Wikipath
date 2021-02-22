@@ -53,8 +53,10 @@ $(() => {
     const current = template.getCurrentLocale();
     let html = '';
     for (const locale of locales) {
+        console.log(locale);
         const selected = locale.code === current ? ' selected' : '';
-        html += `<option value="${locale.code}"${selected}>${locale.name}</option>\n`;
+        const localeName = locale.localeName ? ` (${locale.localeName})` : '';
+        html += `<option value="${locale.code}"${selected}>${locale.name}${localeName}</option>\n`;
     }
     $('#lang-select').html(html);
     // Checked the correct value for full screen

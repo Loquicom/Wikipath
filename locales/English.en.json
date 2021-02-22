@@ -1,4 +1,8 @@
 {
+    "lang": {
+        "fr": "French",
+        "en": "English"
+    },
     "common": {
         "back": "Back",
         "quit": "Quit",
