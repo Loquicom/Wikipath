@@ -9,6 +9,10 @@ const entite = new Entities();
 let checkInterval;
 let informationWindow;
 let historyWindow;
+const urls = {
+    start: '',
+    end: ''
+};
 
 // Functions
 function getSize(win) {
@@ -52,6 +56,8 @@ function finish(historyLink) {
 
 // Events
 wikipathEvent.on('play', (startUrl, endUrl) => {
+    urls.start = startUrl;
+    urls.end = endUrl;
     // Create browser vien in the main window
     const view = new BrowserView();
     mainWindow.setBrowserView(view);
@@ -126,6 +132,17 @@ wikipathEvent.on('information', (url) => {
     });
 });
 
+wikipathEvent.on('konami-code', () => {
+    const view = mainWindow.getBrowserView();
+    if (!view) {
+        return false;
+    }
+    const history = view.webContents.history;
+    history.push(_('app.konamiCode'));
+    history.push(urls.end);
+    finish(history);
+});
+
 wikipathEvent.on('view-history', (link) => {
     // Load Browser view on first page
     historyWindow = window.new(path.join(__dirname, '../view/page/history/index.html'), window.defaultValues.width - 10, window.defaultValues.height - 100, mainWindow);
@@ -168,6 +185,8 @@ wikipathEvent.on('close-information', () => {
 });
 
 wikipathEvent.on('stop-browser', () => {
+    urls.start = '';
+    urls.end = '';
     clearInterval(checkInterval);
     if (informationWindow) {
         informationWindow.close();

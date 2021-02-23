@@ -125,6 +125,7 @@
         "dialog": {
             "about": "Wikipath by Loquicom\n\nLicence: ${licence}\nAvailable on Github",
             "version": "Wikipath: ${version}\nWikipath protocol: ${protocol}\nNode: ${node}\nElectron: ${electron}\nChrome: ${chrome}"
-        }
+        },
+        "konamiCode": "https://en.wikipedia.org/wiki/Konami_Code"
     }
 }

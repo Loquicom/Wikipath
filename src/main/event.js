@@ -56,6 +56,11 @@ ipcMain.on('close-information', (event) => {
     wikipathEvent.emit('close-information');
 });
 
+// Konami code
+ipcMain.on('konami-code', (event) => {
+    wikipathEvent.emit('konami-code');
+});
+
 // View player history
 ipcMain.on('view-history', (event, link) => {
     wikipathEvent.emit('view-history', link);
