@@ -120,7 +120,7 @@ class i18n {
             }
         }
         // If they are no translation add it in the file
-        if (!translation) {
+        if (translation == null) {
             if (this.#options.add) {
                 this.#addTranslation(key);
             }

@@ -19,6 +19,7 @@ function template() {
                     accelerator: devMode ? 'CmdOrCtrl+Shift+R' : 'CmdOrCtrl+R',
                     click: () => {
                         wikipathEvent.emit('stop');
+                        wikipathEvent.emit('stop-browser');
                         mainWindow.webContents.send('app-menu-reset');
                     },
                 },
