@@ -17,6 +17,7 @@ const template = require(path.join(servicePath, 'template'));
 const routerService = require(path.join(servicePath, 'router'));
 const dialogService = require(path.join(servicePath, 'dialog'));
 const loaderService = require(path.join(servicePath, 'loader'));
+const KeyPattern = require(path.join(servicePath, 'keypattern'))
 
 // Instanciate
 const entities = new Entities();
@@ -65,7 +66,7 @@ Array.prototype.removeItem = function(item) {
 
 $.fn.enterKey = function(fn) {
     this.each(function() {
-        $(this).on('keypress', function(event) {
+        $(this).on('keydown', function(event) {
             if (event.key === 'Enter') {
                 fn.call(this);
             }
