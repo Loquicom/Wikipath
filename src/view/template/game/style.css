@@ -3,3 +3,9 @@
     top: 10px;
     left: 10px;
 }
+
+#konami-code {
+    max-width: 10%;
+    margin-top: 50vh;
+    transform: translateY(-50%); 
+}
