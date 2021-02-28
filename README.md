@@ -17,7 +17,7 @@ Plus d'informations sur le serveur et son utilisation sont disponibles sur la pa
 
 ## Installation
 
-Pour installer le jeu il suffit de télécharger la version souhaitée sur la page [disponible ici](https://github.com/Loquicom/Wikipath/releases). Il existe plusieurs formats disponibles au téléchargement : des installeurs, des exécutables et des archives compressées.
+Pour installer le jeu il suffit de télécharger la version souhaitée sur la page [disponible ici](https://github.com/Loquicom/Wikipath/releases) (puis aller dans Assets de la version souhaitée). Il existe plusieurs formats disponibles au téléchargement : des installeurs, des exécutables et des archives compressées.
 
 Voici en detail ce à quoi correspondent les différents formats (\<version> correspond au numéro de la version présent dans le nom du fichier, par exemple `1.0.0`) :
  - Wikipath-\<version>-win.zip : Archive compressée contenant tous les fichiers et un exéctuables permettant de lancer le logiciel sur Windows
