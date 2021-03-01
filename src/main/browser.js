@@ -83,9 +83,13 @@ wikipathEvent.on('play', (startUrl, endUrl) => {
     view.webContents.on('before-input-event', (event, input) => {
         event.preventDefault();
     });
+    // Disables the possibility to open new windows with the middle click
+    view.webContents.on('new-window', function (event, url) {
+        event.preventDefault()
+    });
     // Load the start URL
     view.webContents.loadURL(startUrl);
-    // Resize window
+    // Resize the Browser view
     mainWindow.on('resize', () => {
         size = getSize(mainWindow);
         view.setBounds({ x: 0, y: 100, width: size.width, height: size.height - 100 });
@@ -113,14 +117,19 @@ wikipathEvent.on('information', (url) => {
         let size = getSize(mainWindow);
         view.setBounds({ x: 0, y: 0, width: size.width, height: size.height });
         view.webContents.loadURL(url);
+        // Prevent keyboard input
         view.webContents.on('before-input-event', (event, input) => {
-            // Prevent keyboard input
             event.preventDefault();
         });
+        // Prevent navigation with a link
         view.webContents.on('will-navigate', (event, url) => {
-            // Prevent navigation with a link
             event.preventDefault();
         });
+        // Disables the possibility to open new windows with the middle click
+        view.webContents.on('new-window', function (event, url) {
+            event.preventDefault()
+        });
+        // Resize the Browser view
         informationWindow.on('resize', () => {
             size = getSize(mainWindow);
             view.setBounds({ x: 0, y: 0, width: size.width, height: size.height });
@@ -152,14 +161,19 @@ wikipathEvent.on('view-history', (link) => {
     let size = getSize(historyWindow);
     view.setBounds({ x: 0, y: 150, width: size.width, height: size.height - 150 });
     view.webContents.loadURL(link);
+    // Prevent keyboard input
     view.webContents.on('before-input-event', (event, input) => {
-        // Prevent keyboard input
         event.preventDefault();
     });
+    // Prevent navigation with a link
     view.webContents.on('will-navigate', (event, url) => {
-        // Prevent navigation with a link
         event.preventDefault();
     });
+    // Disables the possibility to open new windows with the middle click
+    view.webContents.on('new-window', function (event, url) {
+        event.preventDefault()
+    });
+    // Resize the Browser view
     historyWindow.on('resize', () => {
         size = getSize(mainWindow);
         view.setBounds({ x: 0, y: 150, width: size.width, height: size.height - 150 });

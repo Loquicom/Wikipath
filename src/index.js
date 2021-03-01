@@ -30,6 +30,10 @@ function main() {
   // Create the main window
   const page = devMode ? 'dev.html' : 'index.html';
   mainWindow = window.new(path.join(__dirname, 'view/template/', page));
+  // Disables the possibility to open new windows with the middle click
+  mainWindow.webContents.on('new-window', function (event, url) {
+    event.preventDefault()
+  });
   // In dev mode open the dev tools
   if (devMode) {
     mainWindow.webContents.openDevTools();
