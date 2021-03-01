@@ -26,6 +26,16 @@ function checkUrl(urls, endUrl, history) {
     }
 }
 
+function extractTitle(link) {
+    const splitLink = link.split('/');
+    let title = splitLink.pop();
+    if (!title) {
+        title = splitLink.pop();
+    }
+    title = entite.encode(decodeURIComponent(title).replaceAll('_', ' '));
+    return title;
+}
+
 function finish(historyLink) {
     // Clear interval
     clearInterval(checkInterval);
@@ -39,15 +49,17 @@ function finish(historyLink) {
     // Transform history
     const history = [];
     for (let link of historyLink) {
-        const splitLink = link.split('/');
-        let title = splitLink.pop();
-        if (!title) {
-            title = splitLink.pop();
-        }
-        title = entite.encode(decodeURIComponent(title).replaceAll('_', ' '));
         history.push({
-            title: title,
+            title: extractTitle(link),
             link: link
+        });
+    }
+    // Check if the final link is in the history
+    const lastLink = history[history.length - 1];
+    if (lastLink !== urls.end && lastLink !== decodeURIComponent(urls.end)) {
+        history.push({
+            title: extractTitle(urls.end),
+            link: urls.end
         });
     }
     // Send to server
