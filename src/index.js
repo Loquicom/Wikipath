@@ -75,7 +75,5 @@ app.on('quit', () => {
   if (view) {
     mainWindow.removeBrowserView(view);
   }
-  console.log('Bye');
-  // TODO
 });
 
