@@ -71,9 +71,13 @@ app.on('quit', () => {
   // Alert
   wikipathEvent.emit('stop');
   // Remove BrowserView if is set
-  const view = mainWindow.getBrowserView();
-  if (view) {
-    mainWindow.removeBrowserView(view);
+  try {
+    const view = mainWindow.getBrowserView();
+    if (view) {
+      mainWindow.removeBrowserView(view);
+    }
+  } catch (ex) {
+    // Nothing
   }
 });
 

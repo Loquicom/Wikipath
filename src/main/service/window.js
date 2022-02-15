@@ -12,7 +12,9 @@ window.hidden = function (file) {
         height: 0,
         show: false,
         webPreferences: {
-            nodeIntegration: true
+            nodeIntegration: true,
+            worldSafeExecuteJavaScript: false, 
+            contextIsolation: false
         }
     });
     if (file) {
@@ -30,10 +32,10 @@ window.new = function (file, width, height, parent) {
         width: width,
         height: height,
         //icon: ,
-        worldSafeExecuteJavaScript: true, 
-        contextIsolation: true,
         webPreferences: {
-            nodeIntegration: true
+            nodeIntegration: true,
+            worldSafeExecuteJavaScript: false, 
+            contextIsolation: false
         }
     }
     // Add parent if have one
@@ -58,10 +60,10 @@ window.frameless = function (file, width, height, parent) {
         height: height,
         frame: false,
         //icon: ,
-        worldSafeExecuteJavaScript: true, 
-        contextIsolation: true,
         webPreferences: {
-            nodeIntegration: true
+            nodeIntegration: true,
+            worldSafeExecuteJavaScript: false, 
+            contextIsolation: false
         }
     }
     // Add parent if have one
